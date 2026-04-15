@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # Primary Database (MySQL)
+  mysql:
+    image: mysql:8.0
+    container_name: aiops_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-aiops}
+      MYSQL_USER: ${MYSQL_USER:-aiuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-aipass}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Vector Database (PostgreSQL with pgvector plugin)
+  pgvector:
+    image: ankane/pgvector:latest
+    container_name: aiops_pgvector
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pguser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pgpass}
+      POSTGRES_DB: ${POSTGRES_DB:-aivectordb}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pguser}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Cache and Queue Backend (Redis)
+  redis:
+    image: redis:7-alpine
+    container_name: aiops_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+  pg_data:
+  redis_data:
