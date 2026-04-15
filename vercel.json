@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd frontend && npm install --legacy-peer-deps && npm run build",
+  "buildCommand": "cd frontend && npm install --legacy-peer-deps && npx vite build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
