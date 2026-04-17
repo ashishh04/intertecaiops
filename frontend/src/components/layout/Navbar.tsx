@@ -59,7 +59,7 @@ const Navbar = () => {
                     <img src="/PlatformMenuImg.png" className="w-full h-full object-cover relative z-10" alt="Platform Preview" />
                   </div>
                 </div>
-                <Link to="/platform" className="text-accentTheme text-sm font-semibold hover:underline flex items-center gap-1">Explore the platform <ArrowRight size={14} /></Link>
+                <Link to="/platform" className="text-[#b72e6a] text-sm font-semibold hover:underline flex items-center gap-1">Explore the platform <ArrowRight size={14} /></Link>
               </div>
 
               {/* Right Panel Grid */}
@@ -68,29 +68,29 @@ const Navbar = () => {
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-6">Capabilities</h4>
                   <div className="space-y-6">
                     <Link to="/platform/capabilities" onClick={() => setActiveMenu(null)} className="flex gap-4 hover:opacity-80 transition-opacity group/cap">
-                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-accentTheme/40 group-hover/cap:bg-accentTheme/5 transition-colors">
-                        <Workflow size={16} className="text-slate-600 group-hover/cap:text-accentTheme transition-colors" />
+                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-[#853694]/40 group-hover/cap:bg-[#853694]/5 transition-colors">
+                        <Workflow size={16} className="text-slate-600 group-hover/cap:text-[#b72e6a] transition-colors" />
                       </div>
                       <div>
-                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-accentTheme transition-colors">Prompt-Driven Workflows</h5>
+                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-[#b72e6a] transition-colors">Prompt-Driven Workflows</h5>
                         <p className="text-xs text-slate-500">No-code orchestration over API/WebSocket/WebRTC.</p>
                       </div>
                     </Link>
                     <Link to="/platform/capabilities" onClick={() => setActiveMenu(null)} className="flex gap-4 hover:opacity-80 transition-opacity group/cap">
-                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-accentTheme/40 group-hover/cap:bg-accentTheme/5 transition-colors">
-                        <Search size={16} className="text-slate-600 group-hover/cap:text-accentTheme transition-colors" />
+                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-[#853694]/40 group-hover/cap:bg-[#853694]/5 transition-colors">
+                        <Search size={16} className="text-slate-600 group-hover/cap:text-[#b72e6a] transition-colors" />
                       </div>
                       <div>
-                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-accentTheme transition-colors">Knowledge · Search · Crawl</h5>
+                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-[#b72e6a] transition-colors">Knowledge · Search · Crawl</h5>
                         <p className="text-xs text-slate-500">Bring docs, sites, and systems with citations.</p>
                       </div>
                     </Link>
                     <Link to="/platform/capabilities" onClick={() => setActiveMenu(null)} className="flex gap-4 hover:opacity-80 transition-opacity group/cap">
-                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-accentTheme/40 group-hover/cap:bg-accentTheme/5 transition-colors">
-                        <Cog size={16} className="text-slate-600 group-hover/cap:text-accentTheme transition-colors" />
+                      <div className="mt-1 w-8 h-8 rounded border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 group-hover/cap:border-[#853694]/40 group-hover/cap:bg-[#853694]/5 transition-colors">
+                        <Cog size={16} className="text-slate-600 group-hover/cap:text-[#b72e6a] transition-colors" />
                       </div>
                       <div>
-                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-accentTheme transition-colors">Tool Runtime</h5>
+                        <h5 className="font-semibold text-sm mb-1 group-hover/cap:text-[#b72e6a] transition-colors">Tool Runtime</h5>
                         <p className="text-xs text-slate-500">Secure action execution with audit trails.</p>
                       </div>
                     </Link>
@@ -138,7 +138,7 @@ const Navbar = () => {
                   <div className="flex flex-wrap gap-2 mt-6">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 text-[11px] font-medium text-slate-600 bg-slate-50"><Cloud size={12} /> SaaS & Private</span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 text-[11px] font-medium text-slate-600 bg-slate-50"><Server size={12} /> Reliability</span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-accentTheme/30 bg-accentTheme/5 text-[11px] font-bold text-accentTheme"><Zap size={12} /> Rapid prototyping</span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#853694]/30 bg-[#853694]/5 text-[11px] font-bold text-[#b72e6a]"><Zap size={12} /> Rapid prototyping</span>
                   </div>
                 </div>
               </div>
@@ -163,7 +163,7 @@ const Navbar = () => {
                     { id: 'hr-helpdesk', icon: Building2, title: 'HR · Conversational Helpdesk', desc: 'Policy answers, letter generation, leave/salary/profile queries.' },
                     { id: 'data-automation', icon: FileText, title: 'Data Automation · Unstructured → Structured', desc: 'Extract entities, emit JSON/SQL; normalize messy inputs.' },
                     { id: 'ocr', icon: FileScan, title: 'Data Automation · OCR', desc: 'Read scans/handwriting/forms and trigger downstream actions.' },
-                    { id: 'chat-widget', icon: MessageSquare, title: 'Intertec Chat Widget', desc: 'Design, preview & embed your chat widget using a single script tag.' }
+                    { id: 'chat-widget', icon: MessageSquare, title: 'JuviAI Chat Widget', desc: 'Design, preview & embed your chat widget using a single script tag.' }
                   ].map((sol, i) => (
                     <Link
                       key={i}
@@ -176,11 +176,11 @@ const Navbar = () => {
                           <sol.icon size={14} className="text-slate-500" />
                         </div>
                         <div>
-                          <h5 className="font-semibold text-sm mb-0.5 group-hover:text-accentTheme transition-colors">{sol.title}</h5>
+                          <h5 className="font-semibold text-sm mb-0.5 group-hover:text-[#b72e6a] transition-colors">{sol.title}</h5>
                           <p className="text-[11px] text-slate-500 leading-tight">{sol.desc}</p>
                         </div>
                       </div>
-                      <ArrowRight size={14} className="text-slate-300 group-hover:text-accentTheme transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" />
+                      <ArrowRight size={14} className="text-slate-300 group-hover:text-[#b72e6a] transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" />
                     </Link>
                   ))}
                 </div>
@@ -188,7 +188,7 @@ const Navbar = () => {
                   <Link
                     to="/agents"
                     onClick={() => setActiveMenu(null)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-accentTheme hover:underline"
+                    className="flex items-center gap-1.5 text-xs font-bold text-[#b72e6a] hover:underline"
                   >
                     Browse all agents <ArrowRight size={12} />
                   </Link>
@@ -201,14 +201,14 @@ const Navbar = () => {
                 {[
                   { type: 'Case study', typeColor: 'text-rose-600 bg-rose-50 border-rose-100', title: 'How a fintech deflected 42% tickets with Smart Retrieval', img: '/FinSol.png', to: '/platform/governance-handover' },
                   { type: 'Guide', typeColor: 'text-orange-600 bg-orange-50 border-orange-100', title: 'Designing safe human handover for voice agents', img: '/HumanHandover.png', to: '/platform/governance-handover' },
-                  { type: 'New', typeColor: 'text-accentTheme bg-accentTheme/10 border-accentTheme/20', title: 'ROI Calculator—see time & cost savings', img: '/RoiCalc.png', to: '/platform/security-scale' }
+                  { type: 'New', typeColor: 'text-[#b72e6a] bg-[#853694]/10 border-[#853694]/20', title: 'ROI Calculator—see time & cost savings', img: '/RoiCalc.png', to: '/platform/security-scale' }
                 ].map((spot, i) => (
-                  <Link key={i} to={spot.to} onClick={() => setActiveMenu(null)} className="bg-white border text-left border-slate-200 rounded-xl p-4 flex gap-4 hover:shadow-md hover:border-accentTheme/50 transition-all cursor-pointer group">
+                  <Link key={i} to={spot.to} onClick={() => setActiveMenu(null)} className="bg-white border text-left border-slate-200 rounded-xl p-4 flex gap-4 hover:shadow-md hover:border-[#853694]/50 transition-all cursor-pointer group">
                     <img src={spot.img} alt={spot.type} className="w-16 h-16 object-cover rounded-lg border border-slate-100 shadow-[inset_0_0_10px_rgba(0,0,0,0.02)] shrink-0" />
                     <div className="flex-1">
                       <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide border mb-2 ${spot.typeColor}`}>{spot.type}</span>
-                      <h5 className="text-sm font-semibold leading-tight mb-2 group-hover:text-accentTheme transition-colors">{spot.title}</h5>
-                      <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1 group-hover:text-accentTheme">Read more <ArrowRight size={10} /></span>
+                      <h5 className="text-sm font-semibold leading-tight mb-2 group-hover:text-[#b72e6a] transition-colors">{spot.title}</h5>
+                      <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1 group-hover:text-[#b72e6a]">Read more <ArrowRight size={10} /></span>
                     </div>
                   </Link>
                 ))}
@@ -219,8 +219,8 @@ const Navbar = () => {
       </div>
 
       <Link to="/" className="flex items-center gap-2 cursor-pointer font-bold text-2xl tracking-tight absolute left-1/2 -translate-x-1/2">
-        <img src="/intertec-logo.png" alt="Intertec Logo" className="w-8 h-8 object-contain" />
-        <span>Intertec<span className="font-light">AIOps</span></span>
+        <img src="/Juvi-logo.png" alt="JuviAI Logo" className="w-8 h-8 object-contain" />
+        <span>Juvi<span className="font-light">AI</span></span>
       </Link>
 
       <div className="flex items-center gap-6 z-50">

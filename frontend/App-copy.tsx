@@ -14,31 +14,31 @@ const AnimatedWaves = () => (
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         >
-            <path d="M0,400 C400,100 400,700 800,400 S1200,700 1600,400 S2000,100 2400,400 S2800,700 3200,400" fill="none" stroke="rgba(5, 150, 105, 0.4)" strokeWidth="1.5" />
+            <path d="M0,400 C400,100 400,700 800,400 S1200,700 1600,400 S2000,100 2400,400 S2800,700 3200,400" fill="none" stroke="rgba(133, 54, 148, 0.4)" strokeWidth="1.5" />
         </motion.svg>
         <motion.svg className="absolute w-[200%] h-full top-0 left-0" viewBox="0 0 3200 800" preserveAspectRatio="none"
             animate={{ x: ["-50%", "0%"] }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-            <path d="M0,500 C400,300 400,700 800,500 S1200,700 1600,500 S2000,300 2400,500 S2800,700 3200,500" fill="none" stroke="rgba(5, 150, 105, 0.2)" strokeWidth="2" />
+            <path d="M0,500 C400,300 400,700 800,500 S1200,700 1600,500 S2000,300 2400,500 S2800,700 3200,500" fill="none" stroke="rgba(133, 54, 148, 0.2)" strokeWidth="2" />
         </motion.svg>
         <motion.svg className="absolute w-[200%] h-full top-0 left-0" viewBox="0 0 3200 800" preserveAspectRatio="none"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         >
-            <path d="M0,300 C400,500 400,100 800,300 S1200,100 1600,300 S2000,500 2400,300 S2800,100 3200,300" fill="none" stroke="rgba(5, 150, 105, 0.3)" strokeWidth="1" />
+            <path d="M0,300 C400,500 400,100 800,300 S1200,100 1600,300 S2000,500 2400,300 S2800,100 3200,300" fill="none" stroke="rgba(133, 54, 148, 0.3)" strokeWidth="1" />
         </motion.svg>
         <motion.svg className="absolute w-[200%] h-full top-0 left-0" viewBox="0 0 3200 800" preserveAspectRatio="none"
             animate={{ x: ["-50%", "0%"] }}
             transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
         >
-            <path d="M0,600 C400,300 400,900 800,600 S1200,900 1600,600 S2000,300 2400,600 S2800,900 3200,600" fill="none" stroke="rgba(5, 150, 105, 0.15)" strokeWidth="3" />
+            <path d="M0,600 C400,300 400,900 800,600 S1200,900 1600,600 S2000,300 2400,600 S2800,900 3200,600" fill="none" stroke="rgba(133, 54, 148, 0.15)" strokeWidth="3" />
         </motion.svg>
         <motion.svg className="absolute w-[200%] h-full top-0 left-0" viewBox="0 0 3200 800" preserveAspectRatio="none"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         >
-            <path d="M0,200 C300,400 500,400 800,200 S1300,0 1600,200 S1900,400 2400,200 S2900,0 3200,200" fill="none" stroke="rgba(5, 150, 105, 0.25)" strokeWidth="1.5" />
+            <path d="M0,200 C300,400 500,400 800,200 S1300,0 1600,200 S1900,400 2400,200 S2900,0 3200,200" fill="none" stroke="rgba(133, 54, 148, 0.25)" strokeWidth="1.5" />
         </motion.svg>
     </div>
 );
@@ -193,7 +193,7 @@ const Navbar = () => {
                                         { icon: Building2, title: 'HR · Conversational Helpdesk', desc: 'Policy answers, letter generation, leave/salary/profile queries.' },
                                         { icon: FileText, title: 'Data Automation · Unstructured → Structured', desc: 'Extract entities, emit JSON/SQL; normalize messy inputs.' },
                                         { icon: FileScan, title: 'Data Automation · OCR', desc: 'Read scans/handwriting/forms and trigger downstream actions.' },
-                                        { icon: MessageSquare, title: 'Intertec Chat Widget', desc: 'Design, preview & embed your chat widget using a single script tag.' }
+                                        { icon: MessageSquare, title: 'JuviAI Chat Widget', desc: 'Design, preview & embed your chat widget using a single script tag.' }
                                     ].map((sol, i) => (
                                         <div key={i} className="group flex items-center justify-between p-3 -mx-3 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer">
                                             <div className="flex gap-4 items-center">
@@ -235,8 +235,8 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center gap-2 cursor-pointer font-bold text-2xl tracking-tight absolute left-1/2 -translate-x-1/2">
-                <img src="/intertec-logo.png" alt="Intertec Logo" className="w-8 h-8 object-contain" />
-                <span>Intertec<span className="font-light">AIOps</span></span>
+                <img src="/juviai-logo.png" alt="JuviAI Logo" className="w-8 h-8 object-contain" />
+                <span>JuviAI<span className="font-light">AIOps</span></span>
             </div>
 
             <div className="flex items-center gap-6 z-50">
@@ -271,7 +271,7 @@ const HeroSection = () => {
                     <p className="text-xs font-bold tracking-[0.2em] text-white/50 mb-4 uppercase font-outfit">The OmniAgent Platform</p>
                     <h1 className="text-5xl font-outfit font-extrabold leading-[1.1] tracking-tight mb-6">
                         World's first <br />
-                        <span className="text-accentTheme drop-shadow-[0_0_15px_rgba(5,150,105,0.4)]">PromptCode - Full Stack Agentic</span> Automation Platform
+                        <span className="text-accentTheme drop-shadow-[0_0_15px_rgba(133,54,148,0.4)]">PromptCode - Full Stack Agentic</span> Automation Platform
                     </h1>
                     <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-[580px]">
                         Use Agents to build Agents with prompts, not blocks. Design governed workflows, connect secure tools, and deploy to chat, voice, and email in minutes. Enterprise-grade trust with audit trails and human-in-the-loop.
@@ -283,7 +283,7 @@ const HeroSection = () => {
                         ))}
                     </div>
 
-                    <button className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.3)] hover:shadow-[0_0_30px_rgba(5,150,105,0.5)] transform hover:scale-105 active:scale-95">
+                    <button className="bg-accentTheme hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.3)] hover:shadow-[0_0_30px_rgba(133,54,148,0.5)] transform hover:scale-105 active:scale-95">
                         Join the waitlist
                     </button>
                 </motion.div>
@@ -292,7 +292,7 @@ const HeroSection = () => {
             {/* Right Side Glass UI */}
             <div className="flex-1 flex justify-center items-center">
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative flex flex-col items-center w-full max-w-[450px]">
-                    <img src="/intertec-logo.png" alt="Intertec Logo" className="w-12 h-12 object-contain mb-2 backdrop-blur-sm" />
+                    <img src="/juviai-logo.png" alt="JuviAI Logo" className="w-12 h-12 object-contain mb-2 backdrop-blur-sm" />
                     <div className="text-[11px] font-bold tracking-[0.2em] text-white/40 mb-2 uppercase">Voice Session</div>
                     <h2 className="text-3xl font-semibold mb-1">Speak with Lyra</h2>
                     <p className="text-white/50 text-sm mb-4">English (United States)</p>
@@ -346,7 +346,7 @@ const HeroSection = () => {
                                         className="flex flex-col items-center gap-2 relative group"
                                         onMouseEnter={() => setActiveAvatar(avatar.name)}
                                     >
-                                        <div className={`w-10 h-10 rounded-full border-2 overflow-hidden transition-all duration-300 ${active ? 'border-accentTheme scale-110 shadow-[0_0_15px_rgba(5,150,105,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 cursor-pointer'}`}>
+                                        <div className={`w-10 h-10 rounded-full border-2 overflow-hidden transition-all duration-300 ${active ? 'border-accentTheme scale-110 shadow-[0_0_15px_rgba(133,54,148,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 cursor-pointer'}`}>
                                             <img src={`/${avatar.name}.png`} alt={avatar.name} className="w-full h-full object-cover" />
                                         </div>
                                         <span className={`text-[10px] font-medium transition-colors ${active ? 'text-white' : 'text-white/40'}`}>{avatar.name}</span>
@@ -422,7 +422,7 @@ const LogoMarquee = () => {
 };
 
 const DataPacket = ({ d, delay, duration = 3 }: { d: string, delay: number, duration?: number }) => (
-    <circle r="3" fill="#059669" filter="drop-shadow(0 0 4px #059669)">
+    <circle r="3" fill="#853694" filter="drop-shadow(0 0 4px #853694)">
         <animateMotion dur={`${duration}s`} repeatCount="indefinite" begin={`${delay}s`} path={d} />
     </circle>
 );
@@ -444,7 +444,7 @@ const NetworkSection = () => {
             <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
                 <svg className="absolute w-[800px] h-[400px] overflow-visible" viewBox="-400 -200 800 400">
                     {/* Faint Green Background Grid Lines */}
-                    <g stroke="rgba(5, 150, 105, 0.15)" strokeWidth="1" fill="none">
+                    <g stroke="rgba(133, 54, 148, 0.15)" strokeWidth="1" fill="none">
                         <line x1="-240" y1="-400" x2="-240" y2="400" />
                         <line x1="-140" y1="-400" x2="-140" y2="400" />
                         <line x1="140" y1="-400" x2="140" y2="400" />
@@ -455,7 +455,7 @@ const NetworkSection = () => {
                     </g>
 
                     {/* Hourglass Connection Lines */}
-                    <g stroke="rgba(5, 150, 105, 0.3)" strokeWidth="1.5" strokeDasharray="4 4" fill="none">
+                    <g stroke="rgba(133, 54, 148, 0.3)" strokeWidth="1.5" strokeDasharray="4 4" fill="none">
                         <path d="M 0,0 L -140,0 L -320,0" />
                         <path d="M -140,0 L -240,-100" />
                         <path d="M -140,0 L -240,100" />
@@ -465,10 +465,10 @@ const NetworkSection = () => {
                     </g>
 
                     {/* Central Hub Animated Rings */}
-                    <motion.circle cx="0" cy="0" r="45" stroke="rgba(5, 150, 105, 0.8)" strokeWidth="2" fill="none" strokeDasharray="4 12"
+                    <motion.circle cx="0" cy="0" r="45" stroke="rgba(133, 54, 148, 0.8)" strokeWidth="2" fill="none" strokeDasharray="4 12"
                         animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} style={{ originX: '0px', originY: '0px' }}
                     />
-                    <motion.circle cx="0" cy="0" r="65" stroke="rgba(5, 150, 105, 0.2)" strokeWidth="1.5" fill="none" strokeDasharray="80 160"
+                    <motion.circle cx="0" cy="0" r="65" stroke="rgba(133, 54, 148, 0.2)" strokeWidth="1.5" fill="none" strokeDasharray="80 160"
                         animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} style={{ originX: '0px', originY: '0px' }}
                     />
 
@@ -485,15 +485,15 @@ const NetworkSection = () => {
 
             <div className="relative z-10 w-full max-w-[800px] h-[400px]">
                 {/* Center Hub Overlay Image */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] rounded-full border border-accentTheme bg-[#0a0a0f] flex items-center justify-center shadow-[0_0_30px_rgba(5,150,105,0.4)]">
-                    <img src="/icons/center-logo.png" alt="Center Hub" className="w-[60%] h-[60%] object-contain drop-shadow-[0_0_10px_rgba(5,150,105,0.6)]" onError={(e) => { e.currentTarget.src = '/intertec-logo.png' }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] rounded-full border border-accentTheme bg-[#0a0a0f] flex items-center justify-center shadow-[0_0_30px_rgba(133,54,148,0.4)]">
+                    <img src="/icons/center-logo.png" alt="Center Hub" className="w-[60%] h-[60%] object-contain drop-shadow-[0_0_10px_rgba(133,54,148,0.6)]" onError={(e) => { e.currentTarget.src = '/juviai-logo.png' }} />
                 </div>
 
                 {/* Distributed Nodes */}
                 {staticNodes.map(n => (
                     <div
                         key={n.id}
-                        className="absolute rounded-full border border-white/10 bg-[#12121a] flex items-center justify-center shadow-lg hover:scale-110 hover:border-accentTheme/50 hover:shadow-[0_0_15px_rgba(5,150,105,0.3)] transition-all cursor-pointer overflow-hidden group"
+                        className="absolute rounded-full border border-white/10 bg-[#12121a] flex items-center justify-center shadow-lg hover:scale-110 hover:border-accentTheme/50 hover:shadow-[0_0_15px_rgba(133,54,148,0.3)] transition-all cursor-pointer overflow-hidden group"
                         style={{
                             width: n.size, height: n.size,
                             left: `calc(50% + ${n.x}px)`, top: `calc(50% + ${n.y}px)`,
@@ -629,8 +629,8 @@ const TripleTradeoffSection = () => (
         </div>
 
         {/* Combined solution card */}
-        <div className="rounded-2xl border border-accentTheme/30 bg-accentTheme/5 p-8 text-center relative overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(5,150,105,0.1)]">
-            <img src="/intertec-logo.png" alt="Logo" className="h-8 mx-auto mb-4 opacity-80" />
+        <div className="rounded-2xl border border-accentTheme/30 bg-accentTheme/5 p-8 text-center relative overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(133,54,148,0.1)]">
+            <img src="/juviai-logo.png" alt="Logo" className="h-8 mx-auto mb-4 opacity-80" />
             <p className="text-white/80 max-w-2xl mx-auto mb-6">A voice-enabled, prompt-driven agent platform that unifies reasoning, conversation, and secure tool orchestration into governed workflows.</p>
             <div className="flex flex-wrap justify-center gap-3">
                 {[{ icon: Mic, t: "Voice & Chat" }, { icon: Shield, t: "Governed Access" }, { icon: Server, t: "SaaS / Private Cloud" }, { icon: Network, t: "Integrates with your APIs" }].map(b => (
@@ -646,7 +646,7 @@ const TripleTradeoffSection = () => (
 const StepsSection = () => (
     <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
         <motion.div
-            className="relative rounded-[2rem] border border-white/5 bg-[#0a0a0f]/50 backdrop-blur-md p-8 md:p-12 aspect-square md:aspect-[4/3] flex flex-col items-center justify-center isolate group w-full shadow-[0_0_40px_rgba(5,150,105,0.05)] hover:border-white/10 transition-colors"
+            className="relative rounded-[2rem] border border-white/5 bg-[#0a0a0f]/50 backdrop-blur-md p-8 md:p-12 aspect-square md:aspect-[4/3] flex flex-col items-center justify-center isolate group w-full shadow-[0_0_40px_rgba(133,54,148,0.05)] hover:border-white/10 transition-colors"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -656,7 +656,7 @@ const StepsSection = () => (
             <img
                 src="/OmniAgent.png"
                 alt="OmniAgent Flow Dashboard"
-                className="w-full h-full object-contain opacity-60 group-hover:opacity-95 drop-shadow-[0_0_15px_rgba(5,150,105,0.1)] group-hover:drop-shadow-[0_0_30px_rgba(5,150,105,0.25)] transition-all duration-700 mt-2"
+                className="w-full h-full object-contain opacity-60 group-hover:opacity-95 drop-shadow-[0_0_15px_rgba(133,54,148,0.1)] group-hover:drop-shadow-[0_0_30px_rgba(133,54,148,0.25)] transition-all duration-700 mt-2"
             />
 
             {/* Breathing orb accent behind image */}
@@ -666,7 +666,7 @@ const StepsSection = () => (
         <div className="relative">
             {/* Watermark logo */}
             <div className="absolute top-1/2 right-10 -translate-y-1/2 opacity-[0.03] pointer-events-none scale-150">
-                <img src="/intertec-logo.png" alt="watermark" className="w-[400px] h-[400px] object-cover filter brightness-200 grayscale" />
+                <img src="/juviai-logo.png" alt="watermark" className="w-[400px] h-[400px] object-cover filter brightness-200 grayscale" />
             </div>
 
             <div className="space-y-10 relative z-10 w-full md:pl-8">
@@ -677,7 +677,7 @@ const StepsSection = () => (
                     { title: "Govern & audit", desc: "Every action is logged with context, approvals, and trace.", icon: ShieldCheck },
                 ].map((step, i) => (
                     <div key={i} className="relative">
-                        <div className="absolute -left-10 md:-left-12 top-1 w-7 h-7 rounded-full bg-accentTheme/10 border-2 border-accentTheme flex items-center justify-center shadow-[0_0_15px_rgba(5,150,105,0.4)]">
+                        <div className="absolute -left-10 md:-left-12 top-1 w-7 h-7 rounded-full bg-accentTheme/10 border-2 border-accentTheme flex items-center justify-center shadow-[0_0_15px_rgba(133,54,148,0.4)]">
                             <step.icon size={12} className="text-accentTheme" />
                         </div>
                         <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
@@ -691,7 +691,7 @@ const StepsSection = () => (
 
 const FeaturesGrid = () => (
     <section className="py-24 px-6 md:px-16 max-w-[1400px] mx-auto text-center relative z-10">
-        <div className="text-xs tracking-widest uppercase text-gray-400 mb-2">Why Intertec</div>
+        <div className="text-xs tracking-widest uppercase text-gray-400 mb-2">Why JuviAI</div>
         <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-white mb-12">Built for business teams, trusted by engineering</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -715,7 +715,7 @@ const FeaturesGrid = () => (
             ))}
         </div>
         <div className="mt-16">
-            <button className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.3)] hover:scale-105 inline-flex items-center gap-2">
+            <button className="bg-accentTheme hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.3)] hover:scale-105 inline-flex items-center gap-2">
                 Get started <ArrowRight size={18} />
             </button>
         </div>
@@ -728,13 +728,13 @@ const Footer = () => (
             {/* Brand & Copyright */}
             <div className="flex flex-col gap-6 w-full md:w-1/4">
                 <div className="flex items-center gap-3">
-                    <img src="/intertec-logo.png" alt="Intertec" className="h-10 object-contain w-10 filter invert brightness-0" />
+                    <img src="/juviai-logo.png" alt="JuviAI" className="h-10 object-contain w-10 filter invert brightness-0" />
                 </div>
-                <span className="text-slate-500 text-[13px] font-medium">© 2026 Intertec AIOps - All rights reserved.</span>
+                <span className="text-slate-500 text-[13px] font-medium">© 2026 JuviAI AIOps - All rights reserved.</span>
 
                 {/* Large subtle watermark text matching screenshot */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[14vw] font-outfit font-extrabold text-slate-50 pointer-events-none leading-none select-none tracking-tighter">
-                    Intertec
+                    JuviAI
                 </div>
             </div>
 
@@ -802,7 +802,7 @@ const App = () => {
 
             {/* Bottom right decorative icon */}
             <div className="fixed bottom-8 right-8 opacity-20 z-50 pointer-events-none">
-                <img src="/intertec-logo.png" alt="Decor" className="w-12 h-12 object-contain" />
+                <img src="/juviai-logo.png" alt="Decor" className="w-12 h-12 object-contain" />
             </div>
         </div>
     );

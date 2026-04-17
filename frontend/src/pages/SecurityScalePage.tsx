@@ -15,7 +15,7 @@ const fadeUp = (delay = 0) => ({
 
 const Check = ({ children }: { children: React.ReactNode }) => (
   <li className="flex items-start gap-2 text-sm text-white/50">
-    <CheckCircle2 size={14} className="text-accentTheme shrink-0 mt-0.5" />
+    <CheckCircle2 size={14} className="text-[#b72e6a] shrink-0 mt-0.5" />
     <span>{children}</span>
   </li>
 );
@@ -55,7 +55,7 @@ const SecurityScalePage = () => (
       </motion.p>
       <motion.h1 {...fadeUp(0.08)} className="text-5xl md:text-6xl font-outfit font-extrabold text-white tracking-tight leading-tight mb-6">
         Safe by design,<br />
-        <span className="text-accentTheme">performant at scale</span>
+        <span className="text-[#b72e6a]">performant at scale</span>
       </motion.h1>
       <motion.p {...fadeUp(0.16)} className="text-base text-white/45 max-w-2xl mx-auto leading-relaxed mb-10">
         RBAC, secrets isolation, and auditable actions. Horizontal scaling on Kubernetes with observability and predictable SLOs—without compromising control.
@@ -63,13 +63,13 @@ const SecurityScalePage = () => (
       <motion.div {...fadeUp(0.24)} className="flex items-center justify-center gap-4">
         <Link
           to="/platform/governance-handover"
-          className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3.5 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:scale-105"
+          className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3.5 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.4)] hover:scale-105"
         >
           Explore security
         </Link>
         <button
           onClick={() => document.getElementById('scale-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-          className="border border-accentTheme/40 text-accentTheme font-bold py-3.5 px-10 rounded-full hover:bg-accentTheme/10 transition-all"
+          className="border border-[#853694]/40 text-[#b72e6a] font-bold py-3.5 px-10 rounded-full hover:bg-[#853694]/10 transition-all"
         >
           See scaling model
         </button>
@@ -85,10 +85,10 @@ const SecurityScalePage = () => (
           { icon: FileText, title: 'Governance by design',  desc: 'Policy packs for PII, redaction-at-boundary, retention controls, and compliance evidence.' },
         ].map((item, i) => (
           <motion.div key={item.title} {...fadeUp(0.1 + i * 0.1)}
-            className="rounded-2xl border border-white/5 bg-white/[0.02] p-7 hover:border-accentTheme/20 hover:bg-white/[0.04] transition-all group"
+            className="rounded-2xl border border-white/5 bg-white/[0.02] p-7 hover:border-[#853694]/20 hover:bg-white/[0.04] transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center mb-5 group-hover:bg-accentTheme/20 transition-colors">
-              <item.icon size={18} className="text-accentTheme" />
+            <div className="w-10 h-10 rounded-xl bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center mb-5 group-hover:bg-[#853694]/20 transition-colors">
+              <item.icon size={18} className="text-[#b72e6a]" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
             <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
@@ -112,7 +112,7 @@ const SecurityScalePage = () => (
 
         <motion.div {...fadeUp(0.3)} className="flex flex-wrap justify-center gap-3 mt-4">
           {['AKV/KMS for secrets', 'TLS 1.2+ everywhere', 'Row/doc-level auth', 'Per-step approvals', 'Immutable audit log'].map(tag => (
-            <span key={tag} className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-accentTheme/20 bg-accentTheme/5 text-xs font-semibold text-accentTheme/80">
+            <span key={tag} className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#853694]/20 bg-[#853694]/5 text-xs font-semibold text-[#b72e6a]/80">
               <Zap size={9} /> {tag}
             </span>
           ))}
@@ -127,11 +127,11 @@ const SecurityScalePage = () => (
         {/* Secrets & Data Controls */}
         <motion.div
           {...fadeUp(0.1)}
-          className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-accentTheme/20 hover:bg-white/[0.03] transition-all"
+          className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-[#853694]/20 hover:bg-white/[0.03] transition-all"
         >
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center">
-              <Key size={15} className="text-accentTheme" />
+            <div className="w-8 h-8 rounded-lg bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center">
+              <Key size={15} className="text-[#b72e6a]" />
             </div>
             <h2 className="text-base font-outfit font-bold text-white">Secrets &amp; Data Controls</h2>
           </div>
@@ -152,11 +152,11 @@ const SecurityScalePage = () => (
         {/* RBAC & Approvals */}
         <motion.div
           {...fadeUp(0.2)}
-          className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-accentTheme/20 hover:bg-white/[0.03] transition-all"
+          className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-[#853694]/20 hover:bg-white/[0.03] transition-all"
         >
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center">
-              <Lock size={15} className="text-accentTheme" />
+            <div className="w-8 h-8 rounded-lg bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center">
+              <Lock size={15} className="text-[#b72e6a]" />
             </div>
             <h2 className="text-base font-outfit font-bold text-white">RBAC &amp; Approvals</h2>
           </div>
@@ -222,11 +222,11 @@ const SecurityScalePage = () => (
             <motion.div
               key={col.title}
               {...fadeUp(0.1 + i * 0.1)}
-              className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-accentTheme/20 hover:bg-white/[0.03] transition-all"
+              className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 hover:border-[#853694]/20 hover:bg-white/[0.03] transition-all"
             >
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center">
-                  <col.icon size={15} className="text-accentTheme" />
+                <div className="w-8 h-8 rounded-lg bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center">
+                  <col.icon size={15} className="text-[#b72e6a]" />
                 </div>
                 <h3 className="text-base font-outfit font-bold text-white">{col.title}</h3>
               </div>
@@ -247,13 +247,13 @@ const SecurityScalePage = () => (
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/solutions/smart-retrieval"
-            className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.35)] hover:scale-105"
+            className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.35)] hover:scale-105"
           >
             Explore Agents
           </Link>
           <Link
             to="/platform"
-            className="text-accentTheme font-semibold text-sm flex items-center gap-1 hover:underline"
+            className="text-[#b72e6a] font-semibold text-sm flex items-center gap-1 hover:underline"
           >
             ← Back to Platform
           </Link>

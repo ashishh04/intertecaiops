@@ -18,8 +18,8 @@ const AGENTS = [
     icon: Search,
     tags: ['RAG', 'Voice', 'Chat', 'Citations'],
     badge: 'Popular',
-    badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-    accent: 'from-emerald-500/10 to-emerald-500/[0.02]',
+    badgeColor: 'text-purple-400 bg-purple-400/10 border-purple-400/20',
+    accent: 'from-purple-500/10 to-purple-500/[0.02]',
   },
   {
     id: 'itsm-automation',
@@ -40,8 +40,8 @@ const AGENTS = [
     icon: LifeBuoy,
     tags: ['SOP Guided', 'Handover', 'Voice', 'Search'],
     badge: 'Live',
-    badgeColor: 'text-green-400 bg-green-400/10 border-green-400/20',
-    accent: 'from-green-500/10 to-green-500/[0.02]',
+    badgeColor: 'text-fuchsia-400 bg-fuchsia-400/10 border-fuchsia-400/20',
+    accent: 'from-fuchsia-500/10 to-fuchsia-500/[0.02]',
   },
   {
     id: 'hr-helpdesk',
@@ -79,7 +79,7 @@ const AGENTS = [
   {
     id: 'chat-widget',
     category: 'Channels',
-    title: 'Intertec Chat Widget',
+    title: 'JuviAI Chat Widget',
     desc: 'Design, preview, and embed your branded chat agent using a single script tag. Customisable themes, RBAC, and full session analytics.',
     icon: MessageSquare,
     tags: ['Embed', 'Brandable', 'Analytics', 'No-code'],
@@ -117,7 +117,7 @@ const AgentCard = ({ agent, index }: { agent: typeof AGENTS[0]; index: number })
 
       {/* Category + Title */}
       <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-1">{agent.category}</p>
-      <h2 className="text-lg font-outfit font-bold text-white mb-3 group-hover:text-accentTheme transition-colors">{agent.title}</h2>
+      <h2 className="text-lg font-outfit font-bold text-white mb-3 group-hover:text-[#b72e6a] transition-colors">{agent.title}</h2>
 
       {/* Description */}
       <p className="text-sm text-white/45 leading-relaxed mb-6 flex-1">{agent.desc}</p>
@@ -132,7 +132,7 @@ const AgentCard = ({ agent, index }: { agent: typeof AGENTS[0]; index: number })
       </div>
 
       {/* CTA row */}
-      <div className="flex items-center gap-1.5 text-accentTheme text-xs font-bold group-hover:gap-3 transition-all">
+      <div className="flex items-center gap-1.5 text-[#b72e6a] text-xs font-bold group-hover:gap-3 transition-all">
         Explore agent <ArrowRight size={13} />
       </div>
     </Link>
@@ -175,7 +175,7 @@ const AgentsPage = () => (
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-bold mb-8 text-accentTheme uppercase tracking-widest"
+        className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-bold mb-8 text-[#b72e6a] uppercase tracking-widest"
       >
         <Zap size={11} /> Agent Directory
       </motion.div>
@@ -187,7 +187,7 @@ const AgentsPage = () => (
         className="text-5xl md:text-6xl font-outfit font-extrabold text-white tracking-tight leading-tight mb-6 max-w-3xl mx-auto"
       >
         Every agent. One platform.<br />
-        <span className="text-accentTheme">Pick your use case.</span>
+        <span className="text-[#b72e6a]">Pick your use case.</span>
       </motion.h1>
 
       <motion.p
@@ -223,7 +223,7 @@ const AgentsPage = () => (
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/solutions/smart-retrieval"
-            className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.35)] hover:scale-105"
+            className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.35)] hover:scale-105"
           >
             Try Smart Retrieval
           </Link>

@@ -40,10 +40,10 @@ const GovernancePage = () => (
           { icon: Shield, title: 'Approvals',       desc: 'Required checkpoints for sensitive steps; Slack / Email gate-keepers built-in.' },
         ].map((item, i) => (
           <motion.div key={item.title} {...fadeUp(0.1 + i * 0.1)}
-            className="rounded-2xl border border-white/5 bg-white/[0.02] p-7 hover:border-accentTheme/20 hover:bg-white/[0.04] transition-all group"
+            className="rounded-2xl border border-white/5 bg-white/[0.02] p-7 hover:border-[#853694]/20 hover:bg-white/[0.04] transition-all group"
           >
-            <div className="w-10 h-10 rounded-xl bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center mb-5 group-hover:bg-accentTheme/20 transition-colors">
-              <item.icon size={18} className="text-accentTheme" />
+            <div className="w-10 h-10 rounded-xl bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center mb-5 group-hover:bg-[#853694]/20 transition-colors">
+              <item.icon size={18} className="text-[#b72e6a]" />
             </div>
             <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
             <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
@@ -63,7 +63,7 @@ const GovernancePage = () => (
             Seamless switch between AI and human operator with full context — transcripts, decisions, and remaining next steps.
           </p>
           {/* YAML snippet */}
-          <div className="rounded-2xl border border-white/8 bg-[#08080f] p-6 font-mono text-xs text-emerald-400/80 leading-6 overflow-auto">
+          <div className="rounded-2xl border border-white/8 bg-[#08080f] p-6 font-mono text-xs text-purple-400/80 leading-6 overflow-auto">
             <p className="text-white/30 mb-2"># handover trigger config</p>
             <p><span className="text-white/60">handover:</span></p>
             <p>&nbsp;&nbsp;<span className="text-white/60">when:</span> [<span className="text-yellow-400">"risk&gt;high"</span>, <span className="text-yellow-400">"confidence&lt;0.6"</span>, <span className="text-yellow-400">"policy.blocked"</span>]</p>
@@ -87,9 +87,9 @@ const GovernancePage = () => (
               { icon: AlertTriangle, label: 'PII redaction', desc: 'Auto-mask credit cards, SSNs, emails before they reach LLM context.' },
               { icon: Download,    label: 'Export',         desc: 'Full audit bundles as JSON/CSV for compliance and forensics.' },
             ].map(item => (
-              <div key={item.label} className="flex items-start gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-accentTheme/20 hover:bg-white/[0.03] transition-all">
-                <div className="w-8 h-8 rounded-lg bg-accentTheme/10 border border-accentTheme/15 flex items-center justify-center shrink-0 mt-0.5">
-                  <item.icon size={13} className="text-accentTheme" />
+              <div key={item.label} className="flex items-start gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:border-[#853694]/20 hover:bg-white/[0.03] transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#853694]/10 border border-[#853694]/15 flex items-center justify-center shrink-0 mt-0.5">
+                  <item.icon size={13} className="text-[#b72e6a]" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white mb-0.5">{item.label}</p>
@@ -108,7 +108,7 @@ const GovernancePage = () => (
         <p className="text-xs text-white/30 uppercase tracking-widest mb-6 font-semibold">Next: Infrastructure trust</p>
         <Link
           to="/platform/security-scale"
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-accentTheme/35 bg-accentTheme/8 text-accentTheme font-bold text-sm hover:bg-accentTheme hover:text-white hover:border-accentTheme transition-all duration-300 group"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-[#853694]/35 bg-[#853694]/8 text-[#b72e6a] font-bold text-sm hover:bg-[#853694] hover:text-white hover:border-[#853694] transition-all duration-300 group"
         >
           Security &amp; Scale <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>

@@ -75,7 +75,7 @@ const StickyTabs = ({ active, onTabClick }: { active: string; onTabClick: (id: s
           onClick={() => onTabClick(s.id)}
           className={`flex items-center gap-1.5 px-4 py-3.5 text-sm font-semibold whitespace-nowrap border-b-2 transition-all ${
             active === s.id
-              ? 'border-accentTheme text-white'
+              ? 'border-[#853694] text-white'
               : 'border-transparent text-white/40 hover:text-white/70'
           }`}
         >
@@ -111,8 +111,8 @@ const CapabilityBlock = ({
       {/* Section header */}
       <div className="mb-10 pb-6 border-b border-white/8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-9 h-9 rounded-xl bg-accentTheme/10 border border-accentTheme/25 flex items-center justify-center">
-            <section.icon size={16} className="text-accentTheme" />
+          <div className="w-9 h-9 rounded-xl bg-[#853694]/10 border border-[#853694]/25 flex items-center justify-center">
+            <section.icon size={16} className="text-[#b72e6a]" />
           </div>
           <h2 className="text-2xl font-outfit font-bold text-white">{section.title}</h2>
         </div>
@@ -128,10 +128,10 @@ const CapabilityBlock = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: i * 0.08 }}
-            className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-accentTheme/20 hover:bg-white/[0.04] transition-all group"
+            className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-[#853694]/20 hover:bg-white/[0.04] transition-all group"
           >
-            <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-accentTheme/10 group-hover:border-accentTheme/20 transition-colors">
-              <feat.icon size={16} className="text-white/50 group-hover:text-accentTheme transition-colors" />
+            <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-[#853694]/10 group-hover:border-[#853694]/20 transition-colors">
+              <feat.icon size={16} className="text-white/50 group-hover:text-[#b72e6a] transition-colors" />
             </div>
             <h3 className="text-sm font-bold text-white mb-2">{feat.title}</h3>
             <p className="text-xs text-white/40 leading-relaxed">{feat.desc}</p>
@@ -144,7 +144,7 @@ const CapabilityBlock = ({
         <div className="mt-10">
           <Link
             to={section.cta.to}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-accentTheme/30 bg-accentTheme/8 text-accentTheme text-sm font-bold hover:bg-accentTheme hover:text-white hover:border-accentTheme transition-all group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#853694]/30 bg-[#853694]/8 text-[#b72e6a] text-sm font-bold hover:bg-[#853694] hover:text-white hover:border-[#853694] transition-all group"
           >
             {section.cta.label} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -201,7 +201,7 @@ const CapabilitiesPage = () => {
           className="text-5xl md:text-6xl font-outfit font-extrabold text-white tracking-tight leading-tight mb-6 max-w-3xl mx-auto"
         >
           Everything you need to ship{' '}
-          <span className="text-accentTheme">agentic apps</span>
+          <span className="text-[#b72e6a]">agentic apps</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -239,7 +239,7 @@ const CapabilitiesPage = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/solutions/smart-retrieval"
-              className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.35)] hover:scale-105"
+              className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.35)] hover:scale-105"
             >
               Customer Support Agent
             </Link>
@@ -251,7 +251,7 @@ const CapabilitiesPage = () => {
             </Link>
             <Link
               to="/platform"
-              className="text-accentTheme font-semibold text-sm flex items-center gap-1 hover:underline"
+              className="text-[#b72e6a] font-semibold text-sm flex items-center gap-1 hover:underline"
             >
               ← Back to Platform
             </Link>

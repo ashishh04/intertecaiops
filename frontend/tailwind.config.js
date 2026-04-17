@@ -9,7 +9,7 @@ export default {
       colors: {
         background: '#0a0a0f', // Very dark blue/black
         foreground: '#ffffff',
-        accentTheme: '#059669', // Deep emerald green
+        accentTheme: '#853694', // Deep purple green
         accentLogoRed: '#dc2626', // Small red dot for the logo
         surface: 'rgba(255, 255, 255, 0.05)', // Glassmorphism surface
       },
@@ -32,3 +32,4 @@ export default {
   },
   plugins: [],
 }
+

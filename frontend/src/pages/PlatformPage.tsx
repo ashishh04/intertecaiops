@@ -21,13 +21,13 @@ const fadeUp = (delay = 0) => ({
 // ─────────────────────────────────────────────
 const HeroSection = () => (
   <section className="pt-40 pb-24 px-6 md:px-16 relative z-10 text-center">
-    <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold mb-8 text-accentTheme uppercase tracking-widest">
+    <motion.div {...fadeUp(0)} className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold mb-8 text-[#b72e6a] uppercase tracking-widest">
       <Zap size={12} /> OmniAgent Platform
     </motion.div>
 
     <motion.h1 {...fadeUp(0.1)} className="text-5xl md:text-7xl font-outfit font-extrabold text-white tracking-tight leading-tight mb-6 max-w-4xl mx-auto">
       Enterprise-grade{' '}
-      <span className="text-accentTheme">Agentic Platform</span>
+      <span className="text-[#b72e6a]">Agentic Platform</span>
     </motion.h1>
 
     <motion.p {...fadeUp(0.2)} className="text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -37,7 +37,7 @@ const HeroSection = () => (
     <motion.div {...fadeUp(0.3)} className="flex items-center justify-center gap-4 mb-20">
       <Link
         to="/platform/capabilities"
-        className="bg-accentTheme hover:bg-[#047857] text-white font-bold py-3.5 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(5,150,105,0.4)] hover:shadow-[0_0_30px_rgba(5,150,105,0.6)] hover:scale-105 active:scale-95"
+        className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3.5 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.4)] hover:shadow-[0_0_30px_rgba(133,54,148,0.6)] hover:scale-105 active:scale-95"
       >
         Explore capabilities
       </Link>
@@ -59,10 +59,10 @@ const HeroSection = () => (
         <motion.div
           key={item.title}
           {...fadeUp(0.15 + i * 0.1)}
-          className="rounded-2xl border border-white/8 bg-white/[0.025] p-8 text-left hover:border-accentTheme/20 hover:bg-white/[0.04] transition-all group"
+          className="rounded-2xl border border-white/8 bg-white/[0.025] p-8 text-left hover:border-[#853694]/20 hover:bg-white/[0.04] transition-all group"
         >
-          <div className="w-10 h-10 rounded-xl bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center mb-5 group-hover:bg-accentTheme/20 transition-colors">
-            <item.icon size={18} className="text-accentTheme" />
+          <div className="w-10 h-10 rounded-xl bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center mb-5 group-hover:bg-[#853694]/20 transition-colors">
+            <item.icon size={18} className="text-[#b72e6a]" />
           </div>
           <h3 className="text-lg font-bold text-white mb-2 font-outfit">{item.title}</h3>
           <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
@@ -81,9 +81,9 @@ const TripleTradeoffSection = () => (
       <motion.div {...fadeUp(0)} className="text-center mb-16">
         <p className="text-xs uppercase tracking-widest text-white/30 mb-4 font-semibold">The Triple Tradeoff · Solved</p>
         <h2 className="text-4xl md:text-5xl font-outfit font-bold text-white leading-tight">
-          One platform that <span className="text-accentTheme">thinks</span>,{' '}
-          <span className="text-accentTheme">talks</span>,{' '}
-          and <span className="text-accentTheme">acts</span>
+          One platform that <span className="text-[#b72e6a]">thinks</span>,{' '}
+          <span className="text-[#b72e6a]">talks</span>,{' '}
+          and <span className="text-[#b72e6a]">acts</span>
         </h2>
       </motion.div>
 
@@ -112,18 +112,18 @@ const TripleTradeoffSection = () => (
       {/* Unifying card */}
       <motion.div
         {...fadeUp(0.4)}
-        className="rounded-2xl border border-accentTheme/20 bg-gradient-to-br from-accentTheme/10 to-accentTheme/[0.03] p-8 text-center"
+        className="rounded-2xl border border-[#853694]/20 bg-gradient-to-br from-accentTheme/10 to-accentTheme/[0.03] p-8 text-center"
       >
         <div className="flex items-center justify-center gap-3 mb-4">
-          <img src="/intertec-logo.png" alt="Intertec" className="w-8 h-8 object-contain" />
-          <span className="text-xl font-bold text-white font-outfit">IntertecAIOps</span>
+          <img src="/Juvi-logo.png" alt="JuviAI" className="w-8 h-8 object-contain" />
+          <span className="text-xl font-bold text-white font-outfit">JuviAI</span>
         </div>
         <p className="text-white/60 text-base max-w-xl mx-auto mb-6 leading-relaxed">
           A voice-enabled, prompt-driven agent platform that unifies reasoning, conversation, and secure tool orchestration into governed workflows.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           {['Voice & Chat', 'Governed Access', 'SaaS / Private Cloud', 'Integrates with your APIs'].map(tag => (
-            <span key={tag} className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-accentTheme/20 bg-accentTheme/5 text-xs font-semibold text-accentTheme">
+            <span key={tag} className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#853694]/20 bg-[#853694]/5 text-xs font-semibold text-[#b72e6a]">
               <Zap size={10} /> {tag}
             </span>
           ))}
@@ -156,13 +156,13 @@ const CapabilitiesSection = () => (
           <motion.div
             key={item.title}
             {...fadeUp(0.05 * i)}
-            className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-accentTheme/20 hover:bg-white/[0.04] transition-all group cursor-default"
+            className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-[#853694]/20 hover:bg-white/[0.04] transition-all group cursor-default"
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="w-9 h-9 rounded-lg bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center group-hover:bg-accentTheme/20 transition-colors">
-                <item.icon size={16} className="text-accentTheme" />
+              <div className="w-9 h-9 rounded-lg bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center group-hover:bg-[#853694]/20 transition-colors">
+                <item.icon size={16} className="text-[#b72e6a]" />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-accentTheme/60 bg-accentTheme/5 border border-accentTheme/10 px-2 py-0.5 rounded-full">{item.badge}</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#b72e6a]/60 bg-[#853694]/5 border border-[#853694]/10 px-2 py-0.5 rounded-full">{item.badge}</span>
             </div>
             <h3 className="text-sm font-bold text-white mb-2">{item.title}</h3>
             <p className="text-xs text-white/40 leading-relaxed">{item.desc}</p>
@@ -180,7 +180,7 @@ const RealWorldSection = () => (
   <section className="py-24 px-6 md:px-16 relative z-10">
     <div className="max-w-5xl mx-auto">
       <motion.div {...fadeUp(0)} className="text-center mb-16">
-        <p className="text-xs uppercase tracking-widest text-white/30 mb-4 font-semibold">Why Intertec AIOps</p>
+        <p className="text-xs uppercase tracking-widest text-white/30 mb-4 font-semibold">Why JuviAI</p>
         <h2 className="text-4xl md:text-5xl font-outfit font-bold text-white">Built for real-world operations</h2>
       </motion.div>
 
@@ -213,7 +213,7 @@ const RealWorldSection = () => (
       <motion.div {...fadeUp(0.5)} className="text-center">
         <Link
           to="/platform/security-scale"
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-accentTheme/40 bg-accentTheme/10 text-accentTheme font-bold text-sm hover:bg-accentTheme hover:text-white hover:border-accentTheme transition-all duration-300 group"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-[#853694]/40 bg-[#853694]/10 text-[#b72e6a] font-bold text-sm hover:bg-[#853694] hover:text-white hover:border-[#853694] transition-all duration-300 group"
         >
           Trust, Security & Scale <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>
@@ -254,14 +254,14 @@ const DeploySection = () => (
             {...fadeUp(0.1 + i * 0.1)}
             className={`rounded-2xl border p-8 ${
               item.highlight
-                ? 'border-accentTheme/25 bg-accentTheme/5'
+                ? 'border-[#853694]/25 bg-[#853694]/5'
                 : 'border-white/5 bg-white/[0.02]'
             }`}
           >
             <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-5 ${
-              item.highlight ? 'bg-accentTheme/15 border-accentTheme/30' : 'bg-white/5 border-white/10'
+              item.highlight ? 'bg-[#853694]/15 border-[#853694]/30' : 'bg-white/5 border-white/10'
             }`}>
-              <item.icon size={18} className={item.highlight ? 'text-accentTheme' : 'text-white/50'} />
+              <item.icon size={18} className={item.highlight ? 'text-[#b72e6a]' : 'text-white/50'} />
             </div>
             <h3 className="text-lg font-bold text-white mb-2 font-outfit">{item.title}</h3>
             <p className="text-sm text-white/40 leading-relaxed mb-6">{item.desc}</p>
@@ -269,7 +269,7 @@ const DeploySection = () => (
               {item.tags.map(tag => (
                 <span key={tag} className={`px-3 py-1 rounded-full text-xs font-semibold border ${
                   item.highlight
-                    ? 'border-accentTheme/25 bg-accentTheme/10 text-accentTheme'
+                    ? 'border-[#853694]/25 bg-[#853694]/10 text-[#b72e6a]'
                     : 'border-white/10 bg-white/5 text-white/50'
                 }`}>{tag}</span>
               ))}

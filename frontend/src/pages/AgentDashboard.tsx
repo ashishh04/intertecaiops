@@ -50,7 +50,7 @@ const AGENT_CONFIG: Record<string, {
     mockReplies: [
       'Based on our knowledge base, I can confirm that your account reset takes 2–4 hours. Here is the relevant KB article: [KB-3821] **Password Reset Policy**.',
       'I found 3 relevant articles. The most likely answer: your subscription renews on the 15th of each month. Would you like me to send the invoice link?',
-      'Let me search our documentation... Found it! The API rate limit is 1,000 requests/min on the Standard plan. Citation: docs.intertec.io/api-limits.',
+      'Let me search our documentation... Found it! The API rate limit is 1,000 requests/min on the Standard plan. Citation: docs.juviai.io/api-limits.',
       'I\'m escalating this to a human agent with full context. You\'ll be connected in under 2 minutes.',
     ],
     subAgents: [
@@ -217,7 +217,7 @@ const AGENT_CONFIG: Record<string, {
   'data-automation': {
     title: 'Data Automation', subtitle: 'Unstructured → Structured Agent',
     description: 'Extract entities, emit JSON/SQL; normalize messy inputs.',
-    icon: FileText, color: 'from-teal-500/20 to-emerald-500/10', badge: 'Data',
+    icon: FileText, color: 'from-teal-500/20 to-purple-500/10', badge: 'Data',
     model: 'Claude 3.5 Sonnet', status: 'Active',
     stats: [
       { label: 'Docs Processed', value: '18,400', delta: '+54%', up: true },
@@ -301,7 +301,7 @@ const AGENT_CONFIG: Record<string, {
     widgetTypes: ['ocr-uploader', 'pipeline-status'],
   },
   'chat-widget': {
-    title: 'Intertec', subtitle: 'Chat Widget Builder',
+    title: 'JuviAI', subtitle: 'Chat Widget Builder',
     description: 'Design, preview & embed your chat widget using a single script tag.',
     icon: Code2, color: 'from-indigo-500/20 to-blue-500/10', badge: 'Widget',
     model: 'GPT-4o-mini', status: 'Active',
@@ -312,7 +312,7 @@ const AGENT_CONFIG: Record<string, {
       { label: 'Opt-in Rate', value: '73%', delta: '+6%', up: true },
     ],
     mockReplies: [
-      'Your widget has been configured with the **Intertec Dark** theme. Preview is live. Copy embed script: `<script src="cdn.intertec.io/widget/v2.js" data-id="wgt_abc123"></script>`',
+      'Your widget has been configured with the **JuviAI Dark** theme. Preview is live. Copy embed script: `<script src="cdn.juviai.io/widget/v2.js" data-id="wgt_abc123"></script>`',
       'Lead captured: Name: Sarah Chen | Email: sarah@acme.com | Query: "Enterprise pricing". Pushed to HubSpot CRM.',
       'Widget analytics for last 7 days: 4,821 sessions | 3,102 conversations | 78% resolution rate | 4.6/5.0 CSAT.',
       'A/B test results: Variant B (proactive message) has 34% higher engagement. Recommend promoting to 100% traffic.',
@@ -355,8 +355,8 @@ const InfraStatusWidget = () => (
       <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-white/30">Express · Pro</span>
     </div>
     <div className="flex items-center gap-1.5 mb-4">
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-      <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">All Systems Operational</span>
+      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+      <span className="text-[10px] font-bold text-purple-400 uppercase tracking-widest">All Systems Operational</span>
     </div>
     <div className="space-y-2.5">
       {[
@@ -367,9 +367,9 @@ const InfraStatusWidget = () => (
       ].map(svc => (
         <div key={svc.name} className="flex items-center justify-between border-b border-white/5 pb-2.5">
           <div className="flex items-center gap-2">
-            <span className={`w-1.5 h-1.5 rounded-full ${svc.incidents > 0 ? 'bg-amber-400' : 'bg-emerald-400'}`} />
+            <span className={`w-1.5 h-1.5 rounded-full ${svc.incidents > 0 ? 'bg-amber-400' : 'bg-purple-400'}`} />
             <span className="text-xs font-semibold text-white">{svc.name}</span>
-            <span className={`text-[9px] px-1 py-0.5 rounded font-bold ${svc.env === 'PROD' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>{svc.env}</span>
+            <span className={`text-[9px] px-1 py-0.5 rounded font-bold ${svc.env === 'PROD' ? 'bg-purple-500/10 text-purple-400' : 'bg-amber-500/10 text-amber-400'}`}>{svc.env}</span>
           </div>
           <div className="flex items-center gap-3 text-[10px] text-white/40">
             <span>{svc.uptime}</span>
@@ -386,28 +386,28 @@ const EnquiryFormWidget = () => {
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', city: '', type: '' });
   const [sent, setSent] = useState(false);
   return sent ? (
-    <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8 flex flex-col items-center gap-3 w-full">
-      <CheckCircle2 size={32} className="text-emerald-400" />
+    <div className="rounded-2xl border border-purple-500/20 bg-purple-500/5 p-8 flex flex-col items-center gap-3 w-full">
+      <CheckCircle2 size={32} className="text-purple-400" />
       <p className="text-sm font-bold text-white">Enquiry submitted!</p>
       <p className="text-xs text-white/40">We'll respond within 2 business hours.</p>
-      <button onClick={() => { setSent(false); setForm({ firstName: '', lastName: '', phone: '', email: '', city: '', type: '' }); }} className="text-xs text-accentTheme hover:underline">Submit another</button>
+      <button onClick={() => { setSent(false); setForm({ firstName: '', lastName: '', phone: '', email: '', city: '', type: '' }); }} className="text-xs text-[#b72e6a] hover:underline">Submit another</button>
     </div>
   ) : (
     <div className="rounded-2xl border border-white/10 bg-[#080810] p-5 w-full">
       <h3 className="text-sm font-bold text-white mb-1">Submit an Enquiry</h3>
       <p className="text-[10px] text-white/30 mb-4">Please fill out the form below. All fields are mandatory.</p>
       <div className="grid grid-cols-2 gap-2 mb-2">
-        <input placeholder="First Name *" value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50" />
-        <input placeholder="Last Name *" value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50" />
+        <input placeholder="First Name *" value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50" />
+        <input placeholder="Last Name *" value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50" />
       </div>
-      <input placeholder="Phone Number *" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50 mb-2" />
-      <input placeholder="Email Address *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50 mb-2" />
-      <input placeholder="City *" value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50 mb-2" />
-      <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-accentTheme/50 mb-4">
+      <input placeholder="Phone Number *" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-2" />
+      <input placeholder="Email Address *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-2" />
+      <input placeholder="City *" value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-2" />
+      <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-[#853694]/50 mb-4">
         <option value="">Select an enquiry type</option>
         <option>Technical Support</option><option>Billing</option><option>Sales</option><option>General</option>
       </select>
-      <button onClick={() => setSent(true)} className="w-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold py-2.5 rounded-lg transition-all">Send</button>
+      <button onClick={() => setSent(true)} className="w-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold py-2.5 rounded-lg transition-all">Send</button>
     </div>
   );
 };
@@ -420,7 +420,7 @@ const WellnessWidget = () => {
       <div className="flex items-center gap-4 mb-4">
         <span className="text-sm font-bold text-white">Wellness</span>
         <div className="flex gap-2 text-[11px]">
-          <button className="text-accentTheme font-bold">Daily</button>
+          <button className="text-[#b72e6a] font-bold">Daily</button>
           <button className="text-white/30">Weekly</button>
         </div>
       </div>
@@ -428,7 +428,7 @@ const WellnessWidget = () => {
       <p className="text-xs text-white/40 mb-4">You're on a 5-day streak! Keep up the healthy habits.</p>
       <div className="flex gap-2 mb-5">
         {days.map((d, i) => (
-          <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${active.includes(i) ? 'bg-accentTheme text-white' : 'bg-white/5 text-white/30'}`}>{d}</div>
+          <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${active.includes(i) ? 'bg-[#853694] text-white' : 'bg-white/5 text-white/30'}`}>{d}</div>
         ))}
       </div>
       {[
@@ -470,7 +470,7 @@ const ShipmentTrackerWidget = () => (
         { label: 'Estimated Delivery', time: 'Oct 24, 14:30', done: false },
       ].map((step, i) => (
         <div key={i} className="flex items-start gap-2.5">
-          <div className={`w-2.5 h-2.5 rounded-full mt-0.5 shrink-0 ${step.done ? 'bg-emerald-400' : step.warn ? 'bg-amber-400' : 'bg-white/15'}`} />
+          <div className={`w-2.5 h-2.5 rounded-full mt-0.5 shrink-0 ${step.done ? 'bg-purple-400' : step.warn ? 'bg-amber-400' : 'bg-white/15'}`} />
           <div>
             <p className={`text-xs font-semibold ${step.warn ? 'text-amber-400' : step.done ? 'text-white' : 'text-white/30'}`}>{step.label}</p>
             <p className="text-[10px] text-white/25">{step.time}</p>
@@ -492,16 +492,16 @@ const PortfolioWidget = () => (
     </div>
     <p className="text-3xl font-bold text-white mb-1">$124,592.50</p>
     <div className="flex items-center gap-2 mb-5">
-      <span className="flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
+      <span className="flex items-center gap-1 text-xs font-bold text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full">
         <TrendingUp size={10} /> $1,240.00 [1.01%]
       </span>
       <span className="text-[10px] text-white/30">Today</span>
     </div>
     {/* Mini sparkline SVG */}
     <svg viewBox="0 0 200 40" className="w-full h-10 mb-1">
-      <polyline points="0,35 30,28 60,30 90,15 120,18 150,8 180,12 200,5" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" />
+      <polyline points="0,35 30,28 60,30 90,15 120,18 150,8 180,12 200,5" fill="none" stroke="#853694" strokeWidth="2" strokeLinecap="round" />
       <polyline points="0,35 30,28 60,30 90,15 120,18 150,8 180,12 200,5 200,40 0,40" fill="url(#pg)" opacity="0.15" />
-      <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#10b981" /><stop offset="100%" stopColor="#10b981" stopOpacity="0" /></linearGradient></defs>
+      <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#853694" /><stop offset="100%" stopColor="#853694" stopOpacity="0" /></linearGradient></defs>
     </svg>
   </div>
 );
@@ -514,21 +514,21 @@ const ChatPreviewWidget = () => {
   ];
   return (
     <div className="rounded-2xl border border-white/10 bg-[#080810] w-full overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-3 bg-accentTheme/10 border-b border-white/5">
-        <div className="w-6 h-6 rounded-full bg-accentTheme flex items-center justify-center"><Zap size={11} className="text-white" /></div>
-        <span className="text-xs font-bold text-white">Intertec Assistant</span>
-        <span className="ml-auto flex items-center gap-1 text-[10px] text-emerald-400"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />Online</span>
+      <div className="flex items-center gap-2 px-4 py-3 bg-[#853694]/10 border-b border-white/5">
+        <div className="w-6 h-6 rounded-full bg-[#853694] flex items-center justify-center"><Zap size={11} className="text-white" /></div>
+        <span className="text-xs font-bold text-white">JuviAI Assistant</span>
+        <span className="ml-auto flex items-center gap-1 text-[10px] text-purple-400"><span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />Online</span>
       </div>
       <div className="p-4 space-y-2.5 bg-[#050508]">
         {msgs.map((m, i) => (
           <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[75%] px-3 py-2 rounded-xl text-xs ${m.role === 'user' ? 'bg-accentTheme/20 text-white' : 'bg-white/5 border border-white/8 text-white/70'}`}>{m.text}</div>
+            <div className={`max-w-[75%] px-3 py-2 rounded-xl text-xs ${m.role === 'user' ? 'bg-[#853694]/20 text-white' : 'bg-white/5 border border-white/8 text-white/70'}`}>{m.text}</div>
           </div>
         ))}
       </div>
       <div className="flex items-center gap-2 px-3 py-3 border-t border-white/5">
         <input className="flex-1 bg-white/5 rounded-lg px-3 py-1.5 text-xs text-white placeholder-white/25 outline-none" placeholder="Type a message..." />
-        <button className="w-7 h-7 rounded-lg bg-accentTheme flex items-center justify-center"><Send size={11} className="text-white" /></button>
+        <button className="w-7 h-7 rounded-lg bg-[#853694] flex items-center justify-center"><Send size={11} className="text-white" /></button>
       </div>
     </div>
   );
@@ -543,10 +543,10 @@ const OCRUploaderWidget = () => {
       <p className="text-[10px] text-white/30 mb-4">Upload scans, PDFs, or images for instant extraction.</p>
       {uploaded ? (
         <div className="text-center py-6">
-          <CheckCircle2 size={28} className="text-emerald-400 mx-auto mb-2" />
+          <CheckCircle2 size={28} className="text-purple-400 mx-auto mb-2" />
           <p className="text-sm font-bold text-white">Processing complete</p>
           <p className="text-xs text-white/40 mb-3">48 fields extracted · 99.4% confidence</p>
-          <button onClick={() => setUploaded(false)} className="text-xs text-accentTheme hover:underline">Upload another</button>
+          <button onClick={() => setUploaded(false)} className="text-xs text-[#b72e6a] hover:underline">Upload another</button>
         </div>
       ) : (
         <div
@@ -554,10 +554,10 @@ const OCRUploaderWidget = () => {
           onDragLeave={() => setDragging(false)}
           onDrop={e => { e.preventDefault(); setDragging(false); setUploaded(true); }}
           onClick={() => setUploaded(true)}
-          className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center gap-3 cursor-pointer transition-all ${dragging ? 'border-accentTheme bg-accentTheme/5' : 'border-white/10 hover:border-accentTheme/40'}`}
+          className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center gap-3 cursor-pointer transition-all ${dragging ? 'border-[#853694] bg-[#853694]/5' : 'border-white/10 hover:border-[#853694]/40'}`}
         >
           <Upload size={24} className="text-white/30" />
-          <p className="text-xs text-white/50 text-center">Drag & drop files here or <span className="text-accentTheme font-bold">browse</span></p>
+          <p className="text-xs text-white/50 text-center">Drag & drop files here or <span className="text-[#b72e6a] font-bold">browse</span></p>
           <p className="text-[10px] text-white/25">PDF, PNG, JPG, TIFF · Max 50MB</p>
         </div>
       )}
@@ -581,10 +581,10 @@ const PipelineStatusWidget = () => (
         <div key={step.name}>
           <div className="flex items-center justify-between mb-1">
             <span className="text-xs text-white/70">{step.name}</span>
-            <span className={`text-[10px] font-bold ${step.status === 'done' ? 'text-emerald-400' : step.status === 'running' ? 'text-blue-400' : 'text-white/20'}`}>{step.status === 'done' ? '✓' : step.status === 'running' ? `${step.pct}%` : '—'}</span>
+            <span className={`text-[10px] font-bold ${step.status === 'done' ? 'text-purple-400' : step.status === 'running' ? 'text-blue-400' : 'text-white/20'}`}>{step.status === 'done' ? '✓' : step.status === 'running' ? `${step.pct}%` : '—'}</span>
           </div>
           <div className="h-1.5 rounded-full bg-white/5">
-            <div className={`h-full rounded-full transition-all ${step.status === 'done' ? 'bg-emerald-400' : step.status === 'running' ? 'bg-blue-400' : 'bg-white/5'}`} style={{ width: `${step.pct}%` }} />
+            <div className={`h-full rounded-full transition-all ${step.status === 'done' ? 'bg-purple-400' : step.status === 'running' ? 'bg-blue-400' : 'bg-white/5'}`} style={{ width: `${step.pct}%` }} />
           </div>
         </div>
       ))}
@@ -599,27 +599,27 @@ const HRRequestWidget = () => {
   const [form, setForm] = useState({ name: '', type: '', from: '', to: '', reason: '' });
   const [submitted, setSubmitted] = useState(false);
   return submitted ? (
-    <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8 flex flex-col items-center gap-3 w-full">
-      <CheckCircle2 size={28} className="text-emerald-400" />
+    <div className="rounded-2xl border border-purple-500/20 bg-purple-500/5 p-8 flex flex-col items-center gap-3 w-full">
+      <CheckCircle2 size={28} className="text-purple-400" />
       <p className="text-sm font-bold text-white">Request submitted!</p>
       <p className="text-xs text-white/40">Your manager will receive an approval notification.</p>
-      <button onClick={() => setSubmitted(false)} className="text-xs text-accentTheme hover:underline">New request</button>
+      <button onClick={() => setSubmitted(false)} className="text-xs text-[#b72e6a] hover:underline">New request</button>
     </div>
   ) : (
     <div className="rounded-2xl border border-white/10 bg-[#080810] p-5 w-full">
       <h3 className="text-sm font-bold text-white mb-1">HR Request</h3>
       <p className="text-[10px] text-white/30 mb-4">Submit leave, document, or HR policy requests.</p>
-      <input placeholder="Your Name *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50 mb-2" />
-      <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-accentTheme/50 mb-2">
+      <input placeholder="Your Name *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-2" />
+      <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-[#853694]/50 mb-2">
         <option value="">Request Type *</option>
         <option>Annual Leave</option><option>Sick Leave</option><option>Work From Home</option><option>Document Request</option><option>HR Policy Query</option>
       </select>
       <div className="grid grid-cols-2 gap-2 mb-2">
-        <input type="date" value={form.from} onChange={e => setForm(f => ({ ...f, from: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-accentTheme/50" />
-        <input type="date" value={form.to} onChange={e => setForm(f => ({ ...f, to: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-accentTheme/50" />
+        <input type="date" value={form.from} onChange={e => setForm(f => ({ ...f, from: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-[#853694]/50" />
+        <input type="date" value={form.to} onChange={e => setForm(f => ({ ...f, to: e.target.value }))} className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/60 outline-none focus:border-[#853694]/50" />
       </div>
-      <textarea placeholder="Reason (optional)" value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))} rows={2} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-accentTheme/50 mb-3 resize-none" />
-      <button onClick={() => setSubmitted(true)} className="w-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold py-2.5 rounded-lg transition-all">Submit Request</button>
+      <textarea placeholder="Reason (optional)" value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))} rows={2} className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-3 resize-none" />
+      <button onClick={() => setSubmitted(true)} className="w-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold py-2.5 rounded-lg transition-all">Submit Request</button>
     </div>
   );
 };
@@ -628,7 +628,7 @@ const ISTMTicketWidget = () => (
   <div className="rounded-2xl border border-white/10 bg-[#080810] p-5 w-full">
     <div className="flex items-center justify-between mb-4">
       <span className="text-sm font-bold text-white">Recent Tickets</span>
-      <span className="text-[10px] text-accentTheme font-bold cursor-pointer hover:underline">View all</span>
+      <span className="text-[10px] text-[#b72e6a] font-bold cursor-pointer hover:underline">View all</span>
     </div>
     <div className="space-y-2">
       {[
@@ -645,7 +645,7 @@ const ISTMTicketWidget = () => (
             <p className="text-xs font-semibold text-white">{t.title}</p>
           </div>
           <div className="text-right">
-            <p className={`text-[10px] font-bold ${t.status === 'Resolved' ? 'text-emerald-400' : t.status === 'In Progress' ? 'text-blue-400' : 'text-amber-400'}`}>{t.status}</p>
+            <p className={`text-[10px] font-bold ${t.status === 'Resolved' ? 'text-purple-400' : t.status === 'In Progress' ? 'text-blue-400' : 'text-amber-400'}`}>{t.status}</p>
             <p className="text-[10px] text-white/25">{t.time}</p>
           </div>
         </div>
@@ -673,11 +673,11 @@ const WIDGET_COMPONENT_MAP: Record<string, { label: string; component: React.Rea
 // ─────────────────────────────────────────────
 const StatusBadge = ({ status }: { status: string }) => {
   const map: Record<string, { color: string; dot: string }> = {
-    Active:  { color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', dot: 'bg-emerald-400' },
+    Active:  { color: 'bg-purple-500/15 text-purple-400 border-purple-500/30', dot: 'bg-purple-400' },
     Idle:    { color: 'bg-white/5 text-white/40 border-white/10', dot: 'bg-white/30' },
     Draft:   { color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20', dot: 'bg-yellow-400' },
-    success: { color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', dot: 'bg-emerald-400' },
-    synced:  { color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30', dot: 'bg-emerald-400' },
+    success: { color: 'bg-purple-500/15 text-purple-400 border-purple-500/30', dot: 'bg-purple-400' },
+    synced:  { color: 'bg-purple-500/15 text-purple-400 border-purple-500/30', dot: 'bg-purple-400' },
     running: { color: 'bg-blue-500/15 text-blue-400 border-blue-500/30', dot: 'bg-blue-400 animate-pulse' },
     syncing: { color: 'bg-blue-500/15 text-blue-400 border-blue-500/30', dot: 'bg-blue-400 animate-pulse' },
     failed:  { color: 'bg-red-500/15 text-red-400 border-red-500/30', dot: 'bg-red-400' },
@@ -721,7 +721,7 @@ const ChatTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
   };
 
   const renderContent = (text: string) =>
-    text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code class="bg-white/10 px-1 py-0.5 rounded text-accentTheme">$1</code>');
+    text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code class="bg-white/10 px-1 py-0.5 rounded text-[#b72e6a]">$1</code>');
 
   return (
     <div className="flex flex-col h-[calc(100vh-280px)] min-h-[400px]">
@@ -729,18 +729,18 @@ const ChatTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
         {messages.map((msg, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             {msg.role === 'assistant' && (
-              <div className="w-7 h-7 rounded-full bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center mr-2.5 mt-1 shrink-0">
-                <Zap size={12} className="text-accentTheme" />
+              <div className="w-7 h-7 rounded-full bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center mr-2.5 mt-1 shrink-0">
+                <Zap size={12} className="text-[#b72e6a]" />
               </div>
             )}
-            <div className={`max-w-[75%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-accentTheme/20 border border-accentTheme/30 text-white rounded-tr-sm' : 'bg-white/[0.04] border border-white/8 text-white/80 rounded-tl-sm'}`}
+            <div className={`max-w-[75%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-[#853694]/20 border border-[#853694]/30 text-white rounded-tr-sm' : 'bg-white/[0.04] border border-white/8 text-white/80 rounded-tl-sm'}`}
               dangerouslySetInnerHTML={{ __html: renderContent(msg.content) }}
             />
           </motion.div>
         ))}
         {loading && (
           <div className="flex items-start gap-2.5">
-            <div className="w-7 h-7 rounded-full bg-accentTheme/10 border border-accentTheme/20 flex items-center justify-center shrink-0"><Zap size={12} className="text-accentTheme" /></div>
+            <div className="w-7 h-7 rounded-full bg-[#853694]/10 border border-[#853694]/20 flex items-center justify-center shrink-0"><Zap size={12} className="text-[#b72e6a]" /></div>
             <div className="bg-white/[0.04] border border-white/8 px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1.5">
               {[0, 1, 2].map(i => <span key={i} className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />)}
             </div>
@@ -755,13 +755,13 @@ const ChatTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           placeholder={`Ask the ${config.subtitle}...`}
           className="flex-1 bg-transparent text-sm text-white placeholder-white/25 outline-none"
         />
-        <button onClick={send} disabled={loading || !input.trim()} className="w-8 h-8 rounded-full bg-accentTheme flex items-center justify-center disabled:opacity-30 hover:bg-[#047857] transition-all">
+        <button onClick={send} disabled={loading || !input.trim()} className="w-8 h-8 rounded-full bg-[#853694] flex items-center justify-center disabled:opacity-30 hover:bg-[#6a2b77] transition-all">
           <Send size={13} className="text-white" />
         </button>
       </div>
       <div className="flex flex-wrap gap-2 mt-3">
         {['What can you do?', 'Show me recent activity', 'Help with a new request'].map(q => (
-          <button key={q} onClick={() => { setInput(q); }} className="text-[11px] px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-white/70 hover:border-accentTheme/30 transition-all">{q}</button>
+          <button key={q} onClick={() => { setInput(q); }} className="text-[11px] px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-white/70 hover:border-[#853694]/30 transition-all">{q}</button>
         ))}
       </div>
     </div>
@@ -786,13 +786,13 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           <h3 className="text-sm font-semibold text-white/70">{config.knowledgeSources.length} Knowledge Sources</h3>
           <p className="text-xs text-white/30 mt-0.5">Connected data sources powering this agent's answers</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
           <Plus size={14} /> Add Source
         </button>
       </div>
       <div className="relative">
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/25" />
-        <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search sources..." className="w-full bg-white/[0.03] border border-white/8 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-accentTheme/40 transition-colors" />
+        <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search sources..." className="w-full bg-white/[0.03] border border-white/8 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-[#853694]/40 transition-colors" />
       </div>
       <div className="space-y-3">
         {filtered.map((src, i) => {
@@ -802,8 +802,8 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
             <motion.div key={src.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
               className="flex items-center justify-between p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all group cursor-pointer">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-accentTheme/30 transition-colors">
-                  <Icon size={16} className="text-white/40 group-hover:text-accentTheme transition-colors" />
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
+                  <Icon size={16} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white">{src.name}</p>
@@ -850,19 +850,19 @@ const FormsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           <h3 className="text-sm font-semibold text-white/70">{config.forms.length} Forms Configured</h3>
           <p className="text-xs text-white/30 mt-0.5">Embeddable data-collection forms for this agent</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
           <Plus size={14} /> Create Form
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {config.forms.map((form, i) => (
           <motion.div key={form.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
-            className={`rounded-2xl border p-5 cursor-pointer transition-all group ${selected === i ? 'border-accentTheme/40 bg-accentTheme/5' : 'border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]'}`}
+            className={`rounded-2xl border p-5 cursor-pointer transition-all group ${selected === i ? 'border-[#853694]/40 bg-[#853694]/5' : 'border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04]'}`}
             onClick={() => setSelected(selected === i ? null : i)}
           >
             <div className="flex items-start justify-between mb-3">
-              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-accentTheme/30 transition-colors">
-                <WrapText size={15} className="text-white/40 group-hover:text-accentTheme transition-colors" />
+              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
+                <WrapText size={15} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
               </div>
               <div className="flex gap-1">
                 <button className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10"><Eye size={11} className="text-white/50" /></button>
@@ -879,9 +879,9 @@ const FormsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
             {selected === i && (
               <div className="mt-4 pt-4 border-t border-white/5">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2">Embed snippet</p>
-                <div className="bg-[#08080f] rounded-xl p-3 font-mono text-[10px] text-emerald-400/80 flex items-center justify-between gap-2">
-                  <span className="truncate">{`<iframe src="https://agent.intertec.io/forms/${form.name.toLowerCase().replace(/\s/g, '-')}" />`}</span>
-                  <button className="shrink-0 hover:text-accentTheme"><Copy size={11} /></button>
+                <div className="bg-[#08080f] rounded-xl p-3 font-mono text-[10px] text-purple-400/80 flex items-center justify-between gap-2">
+                  <span className="truncate">{`<iframe src="https://agent.juviai.io/forms/${form.name.toLowerCase().replace(/\s/g, '-')}" />`}</span>
+                  <button className="shrink-0 hover:text-[#b72e6a]"><Copy size={11} /></button>
                 </div>
               </div>
             )}
@@ -905,7 +905,7 @@ const WidgetsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-accentTheme bg-accentTheme/10 px-2 py-0.5 rounded-full border border-accentTheme/20">Widget Studio · Beta</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#b72e6a] bg-[#853694]/10 px-2 py-0.5 rounded-full border border-[#853694]/20">Widget Studio · Beta</span>
           </div>
           <h3 className="text-lg font-outfit font-bold text-white">Build once. Render anywhere.</h3>
           <p className="text-xs text-white/40 mt-1">Click any widget to preview and configure. Embed via script tag.</p>
@@ -914,7 +914,7 @@ const WidgetsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 transition-all">
             <RefreshCw size={12} /> Refresh Widgets
           </button>
-          <button onClick={() => setShowCreate(true)} className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(5,150,105,0.3)]">
+          <button onClick={() => setShowCreate(true)} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(133,54,148,0.3)]">
             <Plus size={14} /> Create Widget
           </button>
         </div>
@@ -957,16 +957,16 @@ const WidgetsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
             className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
             onClick={e => { if (e.target === e.currentTarget) setShowCreate(false); }}>
             <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-8 w-full max-w-lg">
+              className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-8 w-full max-w-lg max-h-[85vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-outfit font-bold text-white">Create Widget</h3>
                 <button onClick={() => setShowCreate(false)} className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><X size={14} className="text-white/50" /></button>
               </div>
-              <p className="text-xs text-white/40 mb-5">Select a widget type for <span className="text-accentTheme font-bold">{config.title}</span></p>
+              <p className="text-xs text-white/40 mb-5">Select a widget type for <span className="text-[#b72e6a] font-bold">{config.title}</span></p>
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {Object.entries(WIDGET_COMPONENT_MAP).map(([key, val]) => (
                   <button key={key} onClick={() => setActiveWidget(key)}
-                    className={`rounded-xl border p-3 text-left text-xs font-semibold transition-all ${activeWidget === key ? 'border-accentTheme/50 bg-accentTheme/10 text-accentTheme' : 'border-white/8 bg-white/[0.02] text-white/50 hover:border-white/15 hover:text-white/70'}`}>
+                    className={`rounded-xl border p-3 text-left text-xs font-semibold transition-all ${activeWidget === key ? 'border-[#853694]/50 bg-[#853694]/10 text-[#b72e6a]' : 'border-white/8 bg-white/[0.02] text-white/50 hover:border-white/15 hover:text-white/70'}`}>
                     {val.label}
                   </button>
                 ))}
@@ -974,7 +974,7 @@ const WidgetsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
               <div className="flex gap-3">
                 <button onClick={() => setShowCreate(false)} className="flex-1 py-2.5 rounded-full border border-white/10 text-white/50 text-xs font-bold hover:bg-white/5 transition-all">Cancel</button>
                 <button onClick={() => setShowCreate(false)} disabled={!activeWidget}
-                  className="flex-1 py-2.5 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all disabled:opacity-30">
+                  className="flex-1 py-2.5 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all disabled:opacity-30">
                   Add Widget
                 </button>
               </div>
@@ -993,13 +993,13 @@ const AgentsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
   <div className="space-y-8">
     <div className="flex items-center justify-between">
       <h3 className="text-sm font-semibold text-white/70">{config.subAgents.length} Sub-agents configured</h3>
-      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all">
+      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
         <Plus size={14} /> Create Sub-Agent
       </button>
     </div>
-    <div className="rounded-2xl border border-accentTheme/20 bg-accentTheme/5 p-5">
+    <div className="rounded-2xl border border-[#853694]/20 bg-[#853694]/5 p-5">
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-9 h-9 rounded-xl bg-accentTheme/10 border border-accentTheme/30 flex items-center justify-center"><Bot size={16} className="text-accentTheme" /></div>
+        <div className="w-9 h-9 rounded-xl bg-[#853694]/10 border border-[#853694]/30 flex items-center justify-center"><Bot size={16} className="text-[#b72e6a]" /></div>
         <div>
           <div className="flex items-center gap-2">
             <span className="text-sm font-bold text-white">agent</span>
@@ -1017,8 +1017,8 @@ const AgentsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
           className="rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 p-5 transition-all cursor-pointer group">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-accentTheme/30 transition-colors">
-                <Cpu size={16} className="text-white/40 group-hover:text-accentTheme transition-colors" />
+              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
+                <Cpu size={16} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -1029,7 +1029,7 @@ const AgentsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
                 <div className="text-[11px] text-white/40 mt-0.5">Model: {agent.model}</div>
               </div>
             </div>
-            <ArrowRight size={14} className="text-white/20 group-hover:text-accentTheme transition-all -translate-x-1 group-hover:translate-x-0 opacity-0 group-hover:opacity-100" />
+            <ArrowRight size={14} className="text-white/20 group-hover:text-[#b72e6a] transition-all -translate-x-1 group-hover:translate-x-0 opacity-0 group-hover:opacity-100" />
           </div>
           <p className="text-xs text-white/50 mt-3 ml-12">{agent.desc}</p>
         </motion.div>
@@ -1048,7 +1048,7 @@ const WorkflowsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
         <h3 className="text-sm font-semibold text-white/70">{config.workflows.length} Active Workflows</h3>
         <p className="text-xs text-white/30 mt-0.5">Agentic flow orchestration for {config.title}</p>
       </div>
-      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all">
+      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
         <Plus size={14} /> New Workflow
       </button>
     </div>
@@ -1058,8 +1058,8 @@ const WorkflowsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
           className="rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-all group cursor-pointer">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-accentTheme/30 transition-colors">
-                <GitBranch size={15} className="text-white/40 group-hover:text-accentTheme transition-colors" />
+              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
+                <GitBranch size={15} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
               </div>
               <div>
                 <p className="text-sm font-bold text-white">{wf.name}</p>
@@ -1068,14 +1068,14 @@ const WorkflowsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
             </div>
             <div className="flex items-center gap-3">
               <StatusBadge status={wf.status} />
-              <button className="w-7 h-7 rounded-full bg-white/5 border border-white/10 hover:border-accentTheme/30 flex items-center justify-center transition-colors">
+              <button className="w-7 h-7 rounded-full bg-white/5 border border-white/10 hover:border-[#853694]/30 flex items-center justify-center transition-colors">
                 {wf.status === 'running' ? <Pause size={12} className="text-white/60" /> : <Play size={12} className="text-white/60" />}
               </button>
             </div>
           </div>
           <div className="flex items-center gap-4 ml-12 text-[11px] text-white/30">
             <span className="flex items-center gap-1"><Clock size={10} /> Last run: {wf.lastRun}</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={10} className="text-emerald-400" /> All checks passed</span>
+            <span className="flex items-center gap-1"><CheckCircle2 size={10} className="text-purple-400" /> All checks passed</span>
           </div>
         </motion.div>
       ))}
@@ -1100,18 +1100,18 @@ const ToolsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {config.tools.map((tool, i) => (
         <motion.div key={tool.name} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
-          className={`rounded-2xl border p-5 transition-all cursor-pointer group ${tool.enabled ? 'border-accentTheme/20 bg-accentTheme/5 hover:border-accentTheme/40' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]'}`}>
+          className={`rounded-2xl border p-5 transition-all cursor-pointer group ${tool.enabled ? 'border-[#853694]/20 bg-[#853694]/5 hover:border-[#853694]/40' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]'}`}>
           <div className="flex items-start justify-between mb-3">
             <div className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${tool.enabled ? 'bg-accentTheme/10 border-accentTheme/30' : 'bg-white/5 border-white/10'}`}>
-                <Wrench size={14} className={tool.enabled ? 'text-accentTheme' : 'text-white/40'} />
+              <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${tool.enabled ? 'bg-[#853694]/10 border-[#853694]/30' : 'bg-white/5 border-white/10'}`}>
+                <Wrench size={14} className={tool.enabled ? 'text-[#b72e6a]' : 'text-white/40'} />
               </div>
               <div>
                 <p className="text-sm font-bold text-white">{tool.name}</p>
                 <p className="text-[10px] text-white/30 uppercase tracking-wider">{tool.category}</p>
               </div>
             </div>
-            <div className={`w-9 h-5 rounded-full border transition-all ${tool.enabled ? 'bg-accentTheme border-accentTheme' : 'bg-white/5 border-white/10'}`}>
+            <div className={`w-9 h-5 rounded-full border transition-all ${tool.enabled ? 'bg-[#853694] border-[#853694]' : 'bg-white/5 border-white/10'}`}>
               <div className={`w-3.5 h-3.5 rounded-full bg-white shadow m-0.5 transition-all ${tool.enabled ? 'translate-x-4' : 'translate-x-0'}`} />
             </div>
           </div>
@@ -1132,7 +1132,7 @@ const StatsBar = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
         className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
         <p className="text-xs text-white/30 mb-1">{stat.label}</p>
         <p className="text-2xl font-bold text-white tracking-tight">{stat.value}</p>
-        <p className={`text-xs font-semibold mt-1 ${stat.up ? 'text-emerald-400' : 'text-rose-400'}`}>{stat.delta} this month</p>
+        <p className={`text-xs font-semibold mt-1 ${stat.up ? 'text-purple-400' : 'text-rose-400'}`}>{stat.delta} this month</p>
       </motion.div>
     ))}
   </div>
@@ -1163,7 +1163,7 @@ const Sidebar = ({ section, setSection, builderTab, setBuilderTab }:
     <aside className="w-[220px] shrink-0 min-h-full bg-[#080810]/80 backdrop-blur-xl border-r border-white/5 flex flex-col py-6 gap-1 z-10">
       {SIDEBAR_TOP.map(item => (
         <button key={item.label} onClick={() => setSection(item.label)}
-          className={`flex items-center gap-3 px-5 py-2.5 text-sm rounded-lg mx-2 transition-all text-left ${section === item.label ? 'bg-accentTheme/10 text-accentTheme font-semibold' : 'text-white/40 hover:text-white/80 hover:bg-white/5'}`}>
+          className={`flex items-center gap-3 px-5 py-2.5 text-sm rounded-lg mx-2 transition-all text-left ${section === item.label ? 'bg-[#853694]/10 text-[#b72e6a] font-semibold' : 'text-white/40 hover:text-white/80 hover:bg-white/5'}`}>
           <item.icon size={16} /> {item.label}
         </button>
       ))}
@@ -1178,7 +1178,7 @@ const Sidebar = ({ section, setSection, builderTab, setBuilderTab }:
             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden pl-4 mt-1 space-y-0.5">
               {BUILDER_CHILDREN.map(child => (
                 <button key={child.label} onClick={() => { setSection('Builder'); setBuilderTab(child.label); }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all text-left ${section === 'Builder' && builderTab === child.label ? 'bg-accentTheme/10 text-accentTheme font-semibold border-l-2 border-accentTheme' : 'text-white/40 hover:text-white/80 hover:bg-white/5'}`}>
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all text-left ${section === 'Builder' && builderTab === child.label ? 'bg-[#853694]/10 text-[#b72e6a] font-semibold border-l-2 border-[#853694]' : 'text-white/40 hover:text-white/80 hover:bg-white/5'}`}>
                   <child.icon size={14} /> {child.label}
                 </button>
               ))}
@@ -1210,8 +1210,8 @@ const AgentDashboard = () => {
       <main className="pt-24 pb-20 px-8 min-h-screen flex flex-col items-center justify-center relative z-10">
         <AlertCircle size={48} className="text-white/20 mb-4" />
         <h1 className="text-2xl font-bold text-white mb-2">Agent Not Found</h1>
-        <p className="text-white/40 mb-6">The agent <code className="text-accentTheme bg-accentTheme/10 px-2 py-0.5 rounded">{agentId}</code> doesn't exist.</p>
-        <Link to="/agents" className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-accentTheme text-white font-bold text-sm hover:bg-[#047857] transition-all">
+        <p className="text-white/40 mb-6">The agent <code className="text-[#b72e6a] bg-[#853694]/10 px-2 py-0.5 rounded">{agentId}</code> doesn't exist.</p>
+        <Link to="/agents" className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#853694] text-white font-bold text-sm hover:bg-[#6a2b77] transition-all">
           <ChevronLeft size={14} /> Back to Agents
         </Link>
       </main>
@@ -1284,7 +1284,7 @@ const AgentDashboard = () => {
             <div className="flex items-center gap-2">
               <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><RefreshCw size={12} /> Sync</button>
               <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><ExternalLink size={12} /> Deploy</button>
-              <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-accentTheme hover:bg-[#047857] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(5,150,105,0.3)]"><Play size={12} /> Run Agent</button>
+              <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(133,54,148,0.3)]"><Play size={12} /> Run Agent</button>
             </div>
           </div>
         </div>
@@ -1298,7 +1298,7 @@ const AgentDashboard = () => {
             <div className="flex items-center gap-1 mb-6 border-b border-white/5">
               {(['Agents', 'Workflows', 'My Tools', 'All Tools', 'Widgets'] as BuilderTab[]).map(tab => (
                 <button key={tab} onClick={() => setBuilderTab(tab)}
-                  className={`px-4 py-2.5 text-sm font-semibold transition-all relative -mb-px ${builderTab === tab ? 'text-white border-b-2 border-accentTheme' : 'text-white/40 hover:text-white/70'}`}>
+                  className={`px-4 py-2.5 text-sm font-semibold transition-all relative -mb-px ${builderTab === tab ? 'text-white border-b-2 border-[#853694]' : 'text-white/40 hover:text-white/70'}`}>
                   {tab}
                 </button>
               ))}

@@ -37,7 +37,7 @@ const App = () => {
 
       {/* Bottom right decorative icon */}
       <div className="fixed bottom-8 right-8 opacity-20 z-50 pointer-events-none">
-        <img src="/intertec-logo.png" alt="Decor" className="w-12 h-12 object-contain" />
+        <img src="/Juvi-logo.png" alt="Decor" className="w-12 h-12 object-contain" />
       </div>
     </div>
   );
