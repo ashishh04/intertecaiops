@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+juviai:
+  gateway:
+    service-uris:
+      auth: lb://auth-service
+      user: lb://user-service
+      placement: lb://placement-service
+      project: lb://project-service
+      product: lb://product-service
+      commerce: lb://commerce-service
+      wallet: lb://wallet-service
+      expense: lb://expense-service

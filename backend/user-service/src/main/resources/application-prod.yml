@@ -1,0 +1,62 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://skillrat-mysql.mysql.database.azure.com:3306/juviai_user?useSSL=true&requireSSL=true&verifyServerCertificate=true&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  flyway:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        jwk-set-uri: ${JWK_SET_URI}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+    redis:
+      enabled: false
+logging:
+  level:
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql: WARN
+
+juviai:
+  crypto:
+    keyvault:
+      url: ${JUVIAI_KEYVAULT_URL:}
+      key-name: ${JUVIAI_KEYVAULT_KEY_NAME:}
+      key-version: ${JUVIAI_KEYVAULT_KEY_VERSION:}
+  email:
+    resend:
+      api-key: ${RESEND_API_KEY:re_gCRGKwba_8891SmoWFHwGd9ZJvWvaf3bE}
+    from: ${JUVIAI_EMAIL_FROM:no-reply@juviai.io}
+    otp:
+      subject: ${JUVIAI_EMAIL_OTP_SUBJECT:Your OTP for SkillRat}

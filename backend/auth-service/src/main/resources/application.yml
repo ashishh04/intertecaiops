@@ -1,0 +1,49 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/juviai_auth?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+juviai:
+  auth:
+    token-store: jdbc # redis|jdbc
+  gateway:
+    check-token-cache-ttl-seconds: 300
+    shared-secret: ${JUVIAI_GATEWAY_SHARED_SECRET:default-insecure-secret-replace-in-prod}
+    enforce-signature: ${JUVIAI_GATEWAY_ENFORCE_SIGNATURE:false}
+  email:
+    resend:
+      api-key: ${RESEND_API_KEY:re_gCRGKwba_8891SmoWFHwGd9ZJvWvaf3bE}
+    from: ${JUVIAI_EMAIL_FROM:no-reply@juviai.io}
+    otp:
+      subject: ${JUVIAI_EMAIL_OTP_SUBJECT:SkillRat Email Verification OTP}
+  field-encryption:
+    key: ${JUVIAI_FIELD_ENC_KEY:}
+  field-hash:
+    key: ${JUVIAI_FIELD_HASH_KEY:${JUVIAI_FIELD_ENC_KEY:}}
+
+management:
+  health:
+    redis:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    enabled: false

@@ -1,0 +1,35 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+juviai:
+  gateway:
+    service-uris:
+      auth: http://auth-service
+      user: http://user-service
+      placement: http://placement-service
+      project: http://project-service
+      product: http://product-service
+      commerce: http://commerce-service
+      wallet: http://wallet-service
+      expense: http://expense-service
+
+eureka:
+  client:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

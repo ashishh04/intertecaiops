@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   ChevronDown, Workflow, Search, Cog, Mic, MessageSquare, Mail,
   Users, Shield, Network, Cloud, Server, Zap, LifeBuoy, Building2,
@@ -9,6 +9,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 3000);
+  }, []);
   const location = useLocation();
 
   // Close dropdown whenever the user navigates to a new page
@@ -224,10 +230,27 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center gap-6 z-50">
-        <Link to="/pricing" className="text-sm font-semibold tracking-wide cursor-pointer hover:text-white/80 transition-colors">
+        <button
+          onClick={() => showToast('Pricing — coming soon!')}
+          className="text-sm font-semibold tracking-wide cursor-pointer hover:text-white/80 transition-colors"
+        >
           Pricing
-        </Link>
+        </button>
       </div>
+
+      {/* Toast notification */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl"
+          >
+            🚀 {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

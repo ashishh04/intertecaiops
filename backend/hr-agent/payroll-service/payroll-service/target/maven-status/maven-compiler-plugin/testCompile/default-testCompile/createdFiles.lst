@@ -1,0 +1,4 @@
+com\juviai\payroll\service\ReimbursementServiceImplTest.class
+com\juviai\payroll\service\PayslipServiceImplTest.class
+com\juviai\payroll\service\TaxDeclarationServiceImplTest.class
+com\juviai\payroll\service\PayrollPeriodServiceImplTest.class

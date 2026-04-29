@@ -1,0 +1,47 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://skillrat-mysql.mysql.database.azure.com:3306/juviai_auth?useSSL=true&requireSSL=true&verifyServerCertificate=true&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+logging:
+  level:
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql: WARN
+
+juviai:
+  email:
+    resend:
+      api-key: ${RESEND_API_KEY:re_gCRGKwba_8891SmoWFHwGd9ZJvWvaf3bE}
+    from: ${JUVIAI_EMAIL_FROM:no-reply@juviai.io}
+    otp:
+      subject: ${JUVIAI_EMAIL_OTP_SUBJECT:SkillRat Email Verification OTP}
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}

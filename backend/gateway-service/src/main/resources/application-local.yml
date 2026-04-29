@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+juviai:
+  gateway:
+    service-uris:
+      auth: http://localhost:8087
+      user: http://localhost:8081
+      placement: http://localhost:8083
+      project: http://localhost:8089
+      product: http://localhost:8091
+      commerce: http://localhost:8096
+      wallet: http://localhost:8084
+      expense: http://localhost:8088

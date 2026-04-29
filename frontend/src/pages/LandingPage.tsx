@@ -1,16 +1,115 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   Play, CheckCircle2, Search, Headphones, Cog,
   Database, FileScan, Bot, Workflow, Brain,
   Mic, Shield, Network, Pencil, Link as LinkIcon,
   Send, ShieldCheck, Sparkles, Layers, ArrowRight,
-  ArrowLeft, Building2, ChevronDown, Server
+  ArrowLeft, Building2, ChevronDown, Server, X, Pause, Volume2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const VoiceDemoModal = ({ onClose, avatarName }: { onClose: () => void, avatarName: string }) => {
+  const [playing, setPlaying] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (playing) {
+        audioRef.current.play().catch(e => console.error("Audio playback failed", e));
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [playing]);
+
+  const msgs = [
+    { role: 'bot', text: `Hello! I'm ${avatarName}. How can I assist you today?` },
+    { role: 'user', text: 'Can you help me reset my password?' },
+    { role: 'bot', text: "Of course! I'll guide you through the process. First, please verify your employee ID." },
+  ];
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="bg-[#0a0a10] border border-white/10 rounded-2xl w-full max-w-md overflow-hidden"
+      >
+        <audio ref={audioRef} src={`/${avatarName.toLowerCase()}.mp3`} onEnded={() => setPlaying(false)} />
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 bg-[#853694]/10 border-b border-white/5">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-[#853694] flex items-center justify-center shadow-[0_0_12px_rgba(133,54,148,0.6)]">
+              <Mic size={14} className="text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white">Voice Session · {avatarName}</p>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-[10px] text-purple-400 font-semibold">{playing ? 'Live' : 'Paused'}</span>
+              </div>
+            </div>
+          </div>
+          <button onClick={onClose} className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10">
+            <X size={13} className="text-white/50" />
+          </button>
+        </div>
+        {/* Chat transcript */}
+        <div className="p-5 space-y-3">
+          {msgs.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.3 }}
+              className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${
+                m.role === 'user' ? 'bg-[#853694]/25 border border-[#853694]/30 text-white' : 'bg-white/[0.05] border border-white/8 text-white/70'
+              }`}>{m.text}</div>
+            </motion.div>
+          ))}
+          {/* Animated waveform */}
+          {playing && (
+            <div className="flex items-center justify-center gap-1 pt-2">
+              {[...Array(14)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-1 bg-[#853694] rounded-full animate-pulse"
+                  style={{ height: `${8 + Math.sin(i * 0.8) * 10 + 8}px`, animationDelay: `${i * 0.07}s` }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-4 px-5 py-4 border-t border-white/5">
+          <button
+            onClick={() => setPlaying(p => !p)}
+            className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all"
+          >
+            {playing ? <><Pause size={12} /> Pause</> : <><Play size={12} /> Resume</>}
+          </button>
+          <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-bold hover:bg-white/10 transition-all">
+            <Volume2 size={12} /> Mute
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const HeroSection = () => {
   const [activeAvatar, setActiveAvatar] = useState('');
+  const [selectedAvatar, setSelectedAvatar] = useState('Lyra');
+  const [showVoiceDemo, setShowVoiceDemo] = useState(false);
   const [selectedLang, setSelectedLang] = useState('English (US)');
   const avatars = [
     { name: 'Lyra', title: 'Calm · Clear · Intelligent', desc: 'Professional · Reassuring', tags: ['Tutorials', 'Knowledge-bases', 'Healthcare', 'Education'] },
@@ -51,7 +150,7 @@ const HeroSection = () => {
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative flex flex-col items-center w-full max-w-[450px]">
           <img src="/Juvi-logo.png" alt="JuviAI Logo" className="w-12 h-12 object-contain mb-2 backdrop-blur-sm" />
           <div className="text-[11px] font-bold tracking-[0.2em] text-white/40 mb-2 uppercase">Voice Session</div>
-          <h2 className="text-3xl font-semibold mb-1">Speak with Lyra</h2>
+          <h2 className="text-3xl font-semibold mb-1">Speak with {selectedAvatar}</h2>
           <p className="text-white/50 text-sm mb-4">English (United States)</p>
 
           <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full mb-12">
@@ -62,7 +161,10 @@ const HeroSection = () => {
           <div className="relative mb-16">
             <div className="absolute inset-0 rounded-full border border-white/10 animate-ping opacity-20 scale-150"></div>
             <div className="absolute inset-0 rounded-full border border-[#853694]/40 animate-pulse opacity-30 scale-125"></div>
-            <button className="relative w-16 h-16 bg-white/10 border border-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-2xl hover:bg-white/20 hover:scale-110 transition-all duration-300">
+            <button
+              onClick={() => setShowVoiceDemo(true)}
+              className="relative w-16 h-16 bg-white/10 border border-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-2xl hover:bg-white/20 hover:scale-110 transition-all duration-300"
+            >
               <Play fill="currentColor" size={24} className="translate-x-0.5" />
             </button>
           </div>
@@ -92,13 +194,14 @@ const HeroSection = () => {
               )}
             </AnimatePresence>
 
-            <div className="flex gap-4 items-center justify-center">
+            <div className="flex gap-4 items-center justify-center" onMouseLeave={() => setActiveAvatar(prev => prev === 'lang' ? 'lang' : '')}>
               {avatars.map((avatar) => {
                 const active = avatar.name === activeAvatar;
                 return (
                   <div key={avatar.name}
                     className="flex flex-col items-center gap-2 relative group"
                     onMouseEnter={() => setActiveAvatar(avatar.name)}
+                    onClick={() => setSelectedAvatar(avatar.name)}
                   >
                     <div className={`w-10 h-10 rounded-full border-2 overflow-hidden transition-all duration-300 ${active ? 'border-[#853694] scale-110 shadow-[0_0_15px_rgba(133,54,148,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 cursor-pointer'}`}>
                       <img src={`/${avatar.name}.png`} alt={avatar.name} className="w-full h-full object-cover" />
@@ -110,10 +213,10 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="relative mt-2">
+          <div className="relative mt-2" onMouseLeave={() => setActiveAvatar(prev => prev === 'lang' ? '' : prev)}>
             <div
               className="text-sm text-white/40 flex items-center gap-1 cursor-pointer hover:text-white/70 transition-colors"
-              onClick={() => setActiveAvatar(activeAvatar === 'lang' ? 'Lyra' : 'lang')}
+              onClick={() => setActiveAvatar(activeAvatar === 'lang' ? '' : 'lang')}
             >
               {selectedLang} <ChevronDown size={14} className={`transition-transform duration-300 ${activeAvatar === 'lang' ? 'rotate-180' : ''}`} />
             </div>
@@ -125,26 +228,40 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full right-0 mt-4 w-48 max-h-64 overflow-y-auto bg-white rounded-lg shadow-xl shadow-black/50 border border-white/10 z-50 py-2 custom-scrollbar"
+                  className="absolute top-full right-0 pt-2 w-48 z-50"
                 >
-                  {[
-                    'Arabic', 'Bengali', 'Chinese (Mandarin)', 'Dutch',
-                    'English (Australia)', 'English (India)', 'English (UK)', 'English (US)'
-                  ].map(lang => (
-                    <div
-                      key={lang}
-                      onClick={() => { setSelectedLang(lang); setActiveAvatar(''); }}
-                      className={`px-4 py-2 text-xs cursor-pointer transition-colors ${lang === selectedLang ? 'bg-[#853694]/10 text-[#b72e6a] font-semibold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
-                    >
-                      {lang}
-                    </div>
-                  ))}
+                  <div className="max-h-64 overflow-y-auto bg-white rounded-lg shadow-xl shadow-black/50 border border-white/10 py-2 custom-scrollbar pointer-events-auto">
+                    {[
+                      'Afrikaans', 'Albanian', 'Amharic', 'Arabic', 'Armenian', 'Azerbaijani', 'Basque', 'Belarusian', 'Bengali', 'Bosnian',
+                      'Bulgarian', 'Catalan', 'Cebuano', 'Chichewa', 'Chinese (Mandarin)', 'Chinese (Traditional)', 'Corsican', 'Croatian',
+                      'Czech', 'Danish', 'Dutch', 'English (Australia)', 'English (Canada)', 'English (India)', 'English (UK)', 'English (US)',
+                      'Esperanto', 'Estonian', 'Filipino', 'Finnish', 'French', 'Frisian', 'Galician', 'Georgian', 'German', 'Greek', 'Gujarati',
+                      'Haitian Creole', 'Hausa', 'Hawaiian', 'Hebrew', 'Hindi', 'Hmong', 'Hungarian', 'Icelandic', 'Igbo', 'Indonesian', 'Irish',
+                      'Italian', 'Japanese', 'Javanese', 'Kannada', 'Kazakh', 'Khmer', 'Kinyarwanda', 'Korean', 'Kurdish (Kurmanji)', 'Kyrgyz',
+                      'Lao', 'Latin', 'Latvian', 'Lithuanian', 'Luxembourgish', 'Macedonian', 'Malagasy', 'Malay', 'Malayalam', 'Maltese', 'Maori',
+                      'Marathi', 'Mongolian', 'Myanmar (Burmese)', 'Nepali', 'Norwegian', 'Odia (Oriya)', 'Pashto', 'Persian', 'Polish',
+                      'Portuguese', 'Punjabi', 'Romanian', 'Russian', 'Samoan', 'Scots Gaelic', 'Serbian', 'Sesotho', 'Shona', 'Sindhi', 'Sinhala',
+                      'Slovak', 'Slovenian', 'Somali', 'Spanish', 'Sundanese', 'Swahili', 'Swedish', 'Tajik', 'Tamil', 'Tatar', 'Telugu', 'Thai',
+                      'Turkish', 'Turkmen', 'Ukrainian', 'Urdu', 'Uyghur', 'Uzbek', 'Vietnamese', 'Welsh', 'Xhosa', 'Yiddish', 'Yoruba', 'Zulu'
+                    ].map(lang => (
+                      <div
+                        key={lang}
+                        onClick={() => { setSelectedLang(lang); setActiveAvatar(''); }}
+                        className={`px-4 py-2 text-xs cursor-pointer transition-colors ${lang === selectedLang ? 'bg-[#853694]/10 text-[#b72e6a] font-semibold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                      >
+                        {lang}
+                      </div>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
         </motion.div>
       </div>
+      <AnimatePresence>
+        {showVoiceDemo && <VoiceDemoModal onClose={() => setShowVoiceDemo(false)} avatarName={selectedAvatar} />}
+      </AnimatePresence>
     </section>
   );
 };
@@ -465,9 +582,9 @@ const FeaturesGrid = () => (
       ))}
     </div>
     <div className="mt-16">
-      <button className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.3)] hover:scale-105 inline-flex items-center gap-2">
+      <Link to="/agents" className="bg-[#853694] hover:bg-[#6a2b77] text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(133,54,148,0.3)] hover:scale-105 inline-flex items-center gap-2">
         Get started <ArrowRight size={18} />
-      </button>
+      </Link>
     </div>
   </section>
 );

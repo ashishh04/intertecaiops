@@ -1,0 +1,59 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: leave-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/juviai_leave?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8087/oauth2/jwks
+
+juviai:
+  gateway:
+    check-token-cache-ttl-seconds: 30
+    shared-secret: ${JUVIAI_GATEWAY_SHARED_SECRET:default-insecure-secret-replace-in-prod}
+    enforce-signature: ${JUVIAI_GATEWAY_ENFORCE_SIGNATURE:false}
+
+feign:
+  client:
+    config:
+      user-service:
+        url: http://localhost:8081
+      payroll-service:
+        url: http://localhost:8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    enabled: false

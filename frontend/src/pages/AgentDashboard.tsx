@@ -755,13 +755,13 @@ const ChatTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           placeholder={`Ask the ${config.subtitle}...`}
           className="flex-1 bg-transparent text-sm text-white placeholder-white/25 outline-none"
         />
-        <button onClick={send} disabled={loading || !input.trim()} className="w-8 h-8 rounded-full bg-[#853694] flex items-center justify-center disabled:opacity-30 hover:bg-[#6a2b77] transition-all">
+        <button id="chat-send-btn" onClick={send} disabled={loading || !input.trim()} className="w-8 h-8 rounded-full bg-[#853694] flex items-center justify-center disabled:opacity-30 hover:bg-[#6a2b77] transition-all">
           <Send size={13} className="text-white" />
         </button>
       </div>
       <div className="flex flex-wrap gap-2 mt-3">
         {['What can you do?', 'Show me recent activity', 'Help with a new request'].map(q => (
-          <button key={q} onClick={() => { setInput(q); }} className="text-[11px] px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-white/70 hover:border-[#853694]/30 transition-all">{q}</button>
+          <button key={q} onClick={() => { setInput(q); setTimeout(() => { const btn = document.getElementById('chat-send-btn'); btn?.click(); }, 50); }} className="text-[11px] px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-white/70 hover:border-[#853694]/30 transition-all">{q}</button>
         ))}
       </div>
     </div>
@@ -773,6 +773,8 @@ const ChatTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
 // ─────────────────────────────────────────────
 const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
   const [query, setQuery] = useState('');
+  const [showAddSource, setShowAddSource] = useState(false);
+  const [addedSource, setAddedSource] = useState('');
   const filtered = config.knowledgeSources.filter(s => s.name.toLowerCase().includes(query.toLowerCase()) || s.type.toLowerCase().includes(query.toLowerCase()));
   const typeIcon: Record<string, React.ElementType> = {
     Confluence: BookOpen, SharePoint: Network, PDF: FileText,
@@ -786,10 +788,15 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           <h3 className="text-sm font-semibold text-white/70">{config.knowledgeSources.length} Knowledge Sources</h3>
           <p className="text-xs text-white/30 mt-0.5">Connected data sources powering this agent's answers</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
+        <button onClick={() => setShowAddSource(true)} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
           <Plus size={14} /> Add Source
         </button>
       </div>
+      {addedSource && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs font-semibold text-purple-400">
+          <CheckCircle2 size={13} /> {addedSource} connected successfully!
+        </div>
+      )}
       <div className="relative">
         <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/25" />
         <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search sources..." className="w-full bg-white/[0.03] border border-white/8 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-[#853694]/40 transition-colors" />
@@ -797,7 +804,6 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
       <div className="space-y-3">
         {filtered.map((src, i) => {
           const Icon = typeIcon[src.type] ?? FileText;
-          const totalDocs = config.knowledgeSources.reduce((a, b) => a + b.docs, 0);
           return (
             <motion.div key={src.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
               className="flex items-center justify-between p-5 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all group cursor-pointer">
@@ -819,8 +825,8 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
               <div className="flex items-center gap-3">
                 <StatusBadge status={src.status} />
                 <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10"><RefreshCw size={11} className="text-white/50" /></button>
-                  <button className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10"><Trash2 size={11} className="text-white/50" /></button>
+                  <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = `↻ Refreshing ${src.name}...`; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2500); }}} className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10"><RefreshCw size={11} className="text-white/50" /></button>
+                  <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = `🗑️ ${src.name} removed`; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-rose-900/80 border border-rose-500/30 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2500); }}} className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center hover:bg-rose-500/10"><Trash2 size={11} className="text-white/50 hover:text-rose-400" /></button>
                 </div>
               </div>
             </motion.div>
@@ -834,6 +840,28 @@ const KnowledgeTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
           <div className="text-xs text-white/40">documents indexed across {config.knowledgeSources.length} sources</div>
         </div>
       </div>
+      <AnimatePresence>
+        {showAddSource && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+            onClick={e => { if (e.target === e.currentTarget) setShowAddSource(false); }}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
+              className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-7 w-full max-w-md">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-base font-outfit font-bold text-white">Add Knowledge Source</h3>
+                <button onClick={() => setShowAddSource(false)} className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><X size={13} className="text-white/50" /></button>
+              </div>
+              <p className="text-xs text-white/40 mb-4">Select a source type to connect to this agent's knowledge base.</p>
+              {['Confluence Wiki', 'SharePoint Site', 'PDF / Documents', 'URL Crawl', 'Database / API'].map(src => (
+                <button key={src} onClick={() => { setAddedSource(src); setShowAddSource(false); setTimeout(() => setAddedSource(''), 3500); }}
+                  className="w-full text-left px-4 py-3 mb-2 rounded-xl border border-white/8 bg-white/[0.02] text-sm text-white/60 hover:border-[#853694]/30 hover:text-white hover:bg-[#853694]/5 transition-all">
+                  {src}
+                </button>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -881,7 +909,7 @@ const FormsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2">Embed snippet</p>
                 <div className="bg-[#08080f] rounded-xl p-3 font-mono text-[10px] text-purple-400/80 flex items-center justify-between gap-2">
                   <span className="truncate">{`<iframe src="https://agent.juviai.io/forms/${form.name.toLowerCase().replace(/\s/g, '-')}" />`}</span>
-                  <button className="shrink-0 hover:text-[#b72e6a]"><Copy size={11} /></button>
+                  <button onClick={() => { navigator.clipboard.writeText(`<iframe src="https://agent.juviai.io/forms/${form.name.toLowerCase().replace(/\s/g, '-')}" />`); const el = document.getElementById('dash-toast'); if (el) { el.textContent = '\u2713 Copied to clipboard'; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2000); }}} className="shrink-0 hover:text-[#b72e6a]"><Copy size={11} /></button>
                 </div>
               </div>
             )}
@@ -939,8 +967,8 @@ const WidgetsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-xs font-bold text-white/60">{w.label}</p>
                   <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="text-[10px] flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 text-white/40 hover:text-white/70"><Eye size={10} /> Preview</button>
-                    <button className="text-[10px] flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 text-white/40 hover:text-white/70"><Copy size={10} /> Embed</button>
+                    <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = `👁️ Previewing ${w.label}`; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2500); }}} className="text-[10px] flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 text-white/40 hover:text-white/70"><Eye size={10} /> Preview</button>
+                    <button onClick={() => { const code = `<script src="https://cdn.juviai.io/widget/${w.label.toLowerCase().replace(/\s/g,'-')}.js"></script>`; navigator.clipboard.writeText(code); const el = document.getElementById('dash-toast'); if (el) { el.textContent = '✓ Embed code copied!'; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2500); }}} className="text-[10px] flex items-center gap-1 px-2 py-1 rounded-lg bg-white/5 text-white/40 hover:text-white/70"><Copy size={10} /> Embed</button>
                   </div>
                 </div>
                 <div className="hover:scale-[1.01] transition-transform duration-300">{w.component}</div>
@@ -1041,86 +1069,169 @@ const AgentsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
 // ─────────────────────────────────────────────
 // Workflows Tab
 // ─────────────────────────────────────────────
-const WorkflowsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
-  <div className="space-y-6">
-    <div className="flex items-center justify-between">
-      <div>
-        <h3 className="text-sm font-semibold text-white/70">{config.workflows.length} Active Workflows</h3>
-        <p className="text-xs text-white/30 mt-0.5">Agentic flow orchestration for {config.title}</p>
+const WorkflowsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
+  type WFStatus = 'success' | 'running' | 'failed';
+  const [wfStatuses, setWfStatuses] = useState<Record<string, WFStatus>>(
+    Object.fromEntries(config.workflows.map(w => [w.name, w.status]))
+  );
+  const [showNewWF, setShowNewWF] = useState(false);
+  const [newWFName, setNewWFName] = useState('');
+
+  const toggleWF = (name: string) => {
+    setWfStatuses(s => ({ ...s, [name]: s[name] === 'running' ? 'success' : 'running' }));
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-white/70">{config.workflows.length} Active Workflows</h3>
+          <p className="text-xs text-white/30 mt-0.5">Agentic flow orchestration for {config.title}</p>
+        </div>
+        <button onClick={() => setShowNewWF(true)} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
+          <Plus size={14} /> New Workflow
+        </button>
       </div>
-      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all">
-        <Plus size={14} /> New Workflow
-      </button>
-    </div>
-    <div className="space-y-4">
-      {config.workflows.map((wf, i) => (
-        <motion.div key={wf.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-          className="rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-all group cursor-pointer">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
-                <GitBranch size={15} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
+      <div className="space-y-4">
+        {config.workflows.map((wf, i) => {
+          const status = wfStatuses[wf.name] ?? wf.status;
+          return (
+            <motion.div key={wf.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
+              className="rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-all group cursor-pointer">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#853694]/30 transition-colors">
+                    <GitBranch size={15} className="text-white/40 group-hover:text-[#b72e6a] transition-colors" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white">{wf.name}</p>
+                    <p className="text-[11px] text-white/30 mt-0.5">Trigger: {wf.trigger} · {wf.steps} steps</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <StatusBadge status={status} />
+                  <button onClick={() => toggleWF(wf.name)} className="w-7 h-7 rounded-full bg-white/5 border border-white/10 hover:border-[#853694]/30 flex items-center justify-center transition-colors">
+                    {status === 'running' ? <Pause size={12} className="text-white/60" /> : <Play size={12} className="text-white/60" />}
+                  </button>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-bold text-white">{wf.name}</p>
-                <p className="text-[11px] text-white/30 mt-0.5">Trigger: {wf.trigger} · {wf.steps} steps</p>
+              <div className="flex items-center gap-4 ml-12 text-[11px] text-white/30">
+                <span className="flex items-center gap-1"><Clock size={10} /> Last run: {wf.lastRun}</span>
+                <span className="flex items-center gap-1"><CheckCircle2 size={10} className="text-purple-400" /> All checks passed</span>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <StatusBadge status={wf.status} />
-              <button className="w-7 h-7 rounded-full bg-white/5 border border-white/10 hover:border-[#853694]/30 flex items-center justify-center transition-colors">
-                {wf.status === 'running' ? <Pause size={12} className="text-white/60" /> : <Play size={12} className="text-white/60" />}
-              </button>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 ml-12 text-[11px] text-white/30">
-            <span className="flex items-center gap-1"><Clock size={10} /> Last run: {wf.lastRun}</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={10} className="text-purple-400" /> All checks passed</span>
-          </div>
-        </motion.div>
-      ))}
+            </motion.div>
+          );
+        })}
+      </div>
+      <AnimatePresence>
+        {showNewWF && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+            onClick={e => { if (e.target === e.currentTarget) setShowNewWF(false); }}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
+              className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-7 w-full max-w-md">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-base font-outfit font-bold text-white">New Workflow</h3>
+                <button onClick={() => setShowNewWF(false)} className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><X size={13} className="text-white/50" /></button>
+              </div>
+              <input value={newWFName} onChange={e => setNewWFName(e.target.value)} placeholder="Workflow name *" className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-[#853694]/50 mb-3" />
+              <select className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white/60 outline-none mb-5">
+                <option>Select trigger</option>
+                <option>Chat / Voice</option>
+                <option>Email Inbound</option>
+                <option>Schedule (Cron)</option>
+                <option>Webhook</option>
+              </select>
+              <div className="flex gap-3">
+                <button onClick={() => setShowNewWF(false)} className="flex-1 py-2.5 rounded-full border border-white/10 text-white/50 text-xs font-bold hover:bg-white/5">Cancel</button>
+                <button onClick={() => { setShowNewWF(false); setNewWFName(''); }} disabled={!newWFName} className="flex-1 py-2.5 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold disabled:opacity-30">Create Workflow</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  </div>
-);
+  );
+};
 
 // ─────────────────────────────────────────────
 // Tools Tab
 // ─────────────────────────────────────────────
-const ToolsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => (
-  <div className="space-y-6">
-    <div className="flex items-center justify-between">
-      <div>
-        <h3 className="text-sm font-semibold text-white/70">{config.tools.length} Tools Available</h3>
-        <p className="text-xs text-white/30 mt-0.5">Secure, scoped tool actions for this agent</p>
+const ToolsTab = ({ config }: { config: typeof AGENT_CONFIG[string] }) => {
+  const [toolStates, setToolStates] = useState<Record<string, boolean>>(
+    Object.fromEntries(config.tools.map(t => [t.name, t.enabled]))
+  );
+  const [showAddTool, setShowAddTool] = useState(false);
+  const [addedMsg, setAddedMsg] = useState('');
+
+  const toggle = (name: string) => setToolStates(s => ({ ...s, [name]: !s[name] }));
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-white/70">{config.tools.length} Tools Available</h3>
+          <p className="text-xs text-white/30 mt-0.5">Secure, scoped tool actions for this agent</p>
+        </div>
+        <button onClick={() => setShowAddTool(true)} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold hover:bg-white/10 transition-all">
+          <Plus size={14} /> Add Tool
+        </button>
       </div>
-      <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold hover:bg-white/10 transition-all">
-        <Plus size={14} /> Add Tool
-      </button>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {config.tools.map((tool, i) => (
-        <motion.div key={tool.name} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
-          className={`rounded-2xl border p-5 transition-all cursor-pointer group ${tool.enabled ? 'border-[#853694]/20 bg-[#853694]/5 hover:border-[#853694]/40' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]'}`}>
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${tool.enabled ? 'bg-[#853694]/10 border-[#853694]/30' : 'bg-white/5 border-white/10'}`}>
-                <Wrench size={14} className={tool.enabled ? 'text-[#b72e6a]' : 'text-white/40'} />
+      {addedMsg && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs font-semibold text-purple-400">
+          <CheckCircle2 size={13} /> {addedMsg}
+        </div>
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {config.tools.map((tool, i) => {
+          const enabled = toolStates[tool.name] ?? tool.enabled;
+          return (
+            <motion.div key={tool.name} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
+              className={`rounded-2xl border p-5 transition-all group ${enabled ? 'border-[#853694]/20 bg-[#853694]/5 hover:border-[#853694]/40' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.04]'}`}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${enabled ? 'bg-[#853694]/10 border-[#853694]/30' : 'bg-white/5 border-white/10'}`}>
+                    <Wrench size={14} className={enabled ? 'text-[#b72e6a]' : 'text-white/40'} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white">{tool.name}</p>
+                    <p className="text-[10px] text-white/30 uppercase tracking-wider">{tool.category}</p>
+                  </div>
+                </div>
+                <button onClick={() => toggle(tool.name)} className={`w-9 h-5 rounded-full border transition-all ${enabled ? 'bg-[#853694] border-[#853694]' : 'bg-white/5 border-white/10'}`}>
+                  <div className={`w-3.5 h-3.5 rounded-full bg-white shadow m-0.5 transition-all ${enabled ? 'translate-x-4' : 'translate-x-0'}`} />
+                </button>
               </div>
-              <div>
-                <p className="text-sm font-bold text-white">{tool.name}</p>
-                <p className="text-[10px] text-white/30 uppercase tracking-wider">{tool.category}</p>
+              <p className="text-xs text-white/40">{tool.desc}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+      <AnimatePresence>
+        {showAddTool && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+            onClick={e => { if (e.target === e.currentTarget) setShowAddTool(false); }}>
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }}
+              className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-7 w-full max-w-md">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-base font-outfit font-bold text-white">Add Tool</h3>
+                <button onClick={() => setShowAddTool(false)} className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10"><X size={13} className="text-white/50" /></button>
               </div>
-            </div>
-            <div className={`w-9 h-5 rounded-full border transition-all ${tool.enabled ? 'bg-[#853694] border-[#853694]' : 'bg-white/5 border-white/10'}`}>
-              <div className={`w-3.5 h-3.5 rounded-full bg-white shadow m-0.5 transition-all ${tool.enabled ? 'translate-x-4' : 'translate-x-0'}`} />
-            </div>
-          </div>
-          <p className="text-xs text-white/40">{tool.desc}</p>
-        </motion.div>
-      ))}
+              <p className="text-xs text-white/40 mb-4">Connect a new tool to this agent. Scoped access will be auto-configured.</p>
+              {['REST API Connector', 'GraphQL Endpoint', 'Webhook Trigger', 'Database Query', 'File Storage'].map(t => (
+                <button key={t} onClick={() => { setAddedMsg(`${t} added successfully!`); setShowAddTool(false); setTimeout(() => setAddedMsg(''), 3000); }}
+                  className="w-full text-left px-4 py-3 mb-2 rounded-xl border border-white/8 bg-white/[0.02] text-sm text-white/60 hover:border-[#853694]/30 hover:text-white hover:bg-[#853694]/5 transition-all">
+                  {t}
+                </button>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  </div>
-);
+  );
+};
 
 // ─────────────────────────────────────────────
 // Stats bar
@@ -1188,7 +1299,7 @@ const Sidebar = ({ section, setSection, builderTab, setBuilderTab }:
       </div>
       <div className="flex-1" />
       {BOTTOM_ITEMS.map(item => (
-        <button key={item.label} className="flex items-center gap-3 px-5 py-2.5 text-sm text-white/30 hover:text-white/70 hover:bg-white/5 rounded-lg mx-2 transition-all text-left">
+        <button key={item.label} onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = `${item.label} — coming soon`; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 2500); }}} className="flex items-center gap-3 px-5 py-2.5 text-sm text-white/30 hover:text-white/70 hover:bg-white/5 rounded-lg mx-2 transition-all text-left">
           <item.icon size={16} /> {item.label}
         </button>
       ))}
@@ -1255,6 +1366,9 @@ const AgentDashboard = () => {
 
   return (
     <main className="pt-[72px] min-h-screen flex relative z-10">
+      {/* Global toast */}
+      <div id="dash-toast" className="fixed bottom-6 right-6 z-50 hidden" />
+
       <Sidebar section={section} setSection={setSection} builderTab={builderTab} setBuilderTab={setBuilderTab} />
       <div className="flex-1 overflow-auto">
         {/* Header */}
@@ -1282,9 +1396,9 @@ const AgentDashboard = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><RefreshCw size={12} /> Sync</button>
-              <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><ExternalLink size={12} /> Deploy</button>
-              <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(133,54,148,0.3)]"><Play size={12} /> Run Agent</button>
+              <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = '✓ Sync complete — knowledge sources refreshed'; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl transition-all'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 3000); }}} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><RefreshCw size={12} /> Sync</button>
+              <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = '🚀 Deploy initiated — agent going live'; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-[#853694]/40 text-sm font-semibold text-white shadow-xl transition-all'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 3000); }}} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all"><ExternalLink size={12} /> Deploy</button>
+              <button onClick={() => { const el = document.getElementById('dash-toast'); if (el) { el.textContent = '⚡ Agent is now running'; el.className = 'fixed bottom-6 right-6 z-50 px-5 py-2.5 rounded-full bg-[#853694]/90 border border-[#853694] text-sm font-semibold text-white shadow-xl transition-all'; setTimeout(() => { if (el) el.className = 'fixed bottom-6 right-6 z-50 hidden'; }, 3000); }}} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#853694] hover:bg-[#6a2b77] text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(133,54,148,0.3)]"><Play size={12} /> Run Agent</button>
             </div>
           </div>
         </div>
